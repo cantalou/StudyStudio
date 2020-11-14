@@ -20,7 +20,7 @@ class TaskFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         taskViewModel = ViewModelProvider(this).get(TaskViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
+        val root = inflater.inflate(R.layout.fragment_task, container, false)
         val textView: TextView = root.findViewById(R.id.text_dashboard)
         taskViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
