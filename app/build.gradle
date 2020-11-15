@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'kotlin-android-extensions'
 }
 
 android {
@@ -58,13 +59,14 @@ android {
         jvmTarget = '1.8'
     }
 
+    def layoutDirs = ['src/main/res']
+    file("src/main/res/layout").listFiles().each {
+        layoutDirs.add("src/main/res/layout/${it.name}")
+    }
+
     sourceSets {
         main {
-            res.srcDirs = ['src/main/res',
-                           'src/main/res/layout/home',
-                           'src/main/res/layout/main',
-                           'src/main/res/layout/notification',
-                           'src/main/res/layout/task']
+            res.srcDirs = layoutDirs
         }
     }
 }
@@ -85,9 +87,10 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.1'
     implementation 'me.jessyan:autosize:1.2.1'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    kapt  "com.android.databinding:compiler:3.5.3"
+    kapt "com.android.databinding:compiler:3.5.3"
 
 }

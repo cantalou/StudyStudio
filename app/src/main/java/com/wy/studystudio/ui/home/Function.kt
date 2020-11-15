@@ -7,5 +7,5 @@ package com.wy.studystudio.ui.home
  *
  * Copyright (c) 2020年, WY CO.ltd. All Rights Reserved.
  */
-data class Function(val action: String, val icon: String, val title: String) {
+data class Function(val className: String, val icon: String, val title: String) {
 }

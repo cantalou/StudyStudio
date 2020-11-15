@@ -1,15 +1,10 @@
 package com.wy.studystudio.ui.home
 
-import android.content.Intent
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
-import androidx.recyclerview.widget.RecyclerView
-import com.wy.studystudio.BR
+
 import com.wy.studystudio.R
-import com.wy.studystudio.ui.common.DBViewHolder
+import com.wy.studystudio.extension.startFragment
+import com.wy.studystudio.ui.common.BaseAdapter
 
 /**
  *
@@ -18,23 +13,13 @@ import com.wy.studystudio.ui.common.DBViewHolder
  *
  * Copyright (c) 2020年, WY CO.ltd. All Rights Reserved.
  */
-class FunctionAdapter(val data: MutableList<Function>) : RecyclerView.Adapter<DBViewHolder>() {
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DBViewHolder {
-        val vdb = DataBindingUtil.inflate<ViewDataBinding>(LayoutInflater.from(parent.context), R.layout.item_function, parent, false)
-        return DBViewHolder(vdb)
-    }
-
-    override fun getItemCount(): Int {
-        return data.size
-    }
-
-    override fun onBindViewHolder(holder: DBViewHolder, position: Int) {
-        holder.vdb.setVariable(BR.function, data[position])
-        holder.vdb.setVariable(BR.adapter, this)
-    }
+class FunctionAdapter(data: MutableList<Function>) : BaseAdapter<Function>(data) {
 
     fun openFunction(v: View, function: Function) {
-        v.context.startActivity(Intent(function.action))
+        v.context.startFragment(function.className)
+    }
+
+    override fun layoutId(): Int {
+        return R.layout.item_function
     }
 }
