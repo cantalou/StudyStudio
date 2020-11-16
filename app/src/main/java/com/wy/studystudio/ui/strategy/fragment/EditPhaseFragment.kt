@@ -35,19 +35,20 @@ class EditPhaseFragment : BaseFragment<FragmentEditPhaseBinding>() {
             return@setOnMenuItemClickListener true
         }
 
-        val dayItem = resources.getIntArray(R.array.hour)
+        var interval = 0
+        val daysItem = resources.getIntArray(R.array.days)
         vdb.days.setOnItemClickListener { parent, view, position, id ->
-
+            interval += daysItem[position] * 60 * 60
         }
 
         val hourItem = resources.getIntArray(R.array.hour)
-        vdb.days.setOnItemClickListener { parent, view, position, id ->
-
+        vdb.hour.setOnItemClickListener { parent, view, position, id ->
+            interval += hourItem[position] * 60
         }
 
-        val minuteItem = resources.getIntArray(R.array.hour)
-        vdb.days.setOnItemClickListener { parent, view, position, id ->
-
+        val minuteItem = resources.getIntArray(R.array.minute)
+        vdb.minute.setOnItemClickListener { parent, view, position, id ->
+            interval += minuteItem[position]
         }
     }
 
