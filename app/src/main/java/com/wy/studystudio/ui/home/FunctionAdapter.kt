@@ -13,7 +13,7 @@ import com.wy.studystudio.ui.common.BaseAdapter
  *
  * Copyright (c) 2020年, WY CO.ltd. All Rights Reserved.
  */
-class FunctionAdapter(data: MutableList<Function>) : BaseAdapter<Function>(data) {
+class FunctionAdapter : BaseAdapter<Function>() {
 
     fun openFunction(v: View, function: Function) {
         v.context.startFragment(function.className)

@@ -12,6 +12,9 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+
+        <item name="actionMenuTextAppearance">@style/Theme.StudyStudio.PopupOverlay</item>
+        <item name="actionMenuTextColor">@color/white</item>
     </style>
 
     <style name="Theme.StudyStudio.NoActionBar">
@@ -19,7 +22,14 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Theme.StudyStudio.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.StudyStudio.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" >
+        <item name="actionMenuTextColor">@color/white</item>
+        <item name="android:textSize">16sp</item>
+    </style>
 
-    <style name="Theme.StudyStudio.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="Theme.StudyStudio.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" >
+        <item name="actionMenuTextColor">@color/white</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
 </resources>

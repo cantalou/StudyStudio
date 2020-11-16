@@ -35,7 +35,7 @@ class HomeFragment : Fragment(), CoroutineScope by MainScope() {
             container,
             false
         )
-        adapter = FunctionAdapter(mutableListOf())
+        adapter = FunctionAdapter()
         vdb.functions.layoutManager = GridLayoutManager(context, 3)
         vdb.functions.adapter = adapter
         showFunction()
@@ -45,11 +45,7 @@ class HomeFragment : Fragment(), CoroutineScope by MainScope() {
     private fun showFunction() {
         launch {
             val data = homeViewModel.getFunctions()
-            adapter.data.apply {
-                clear()
-                addAll(data)
-            }
-            adapter.notifyDataSetChanged()
+            adapter.notifyDataSetChanged(data)
         }
     }
 

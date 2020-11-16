@@ -3,13 +3,13 @@ package com.wy.studystudio.ui.strategy.fragment
 
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.wy.studystudio.R
 import com.wy.studystudio.databinding.FragmentStrategyBinding
 import com.wy.studystudio.extension.startFragment
 import com.wy.studystudio.ui.common.BaseFragment
-import com.wy.studystudio.ui.strategy.StrategyViewModel
+import com.wy.studystudio.ui.strategy.vm.StrategyViewModel
 
 class StrategyFragment : BaseFragment<FragmentStrategyBinding>() {
 
@@ -25,9 +25,13 @@ class StrategyFragment : BaseFragment<FragmentStrategyBinding>() {
 
     override fun initView(content: ViewGroup) {
         val manager = LinearLayoutManager(context)
+        val strategyAdapter = StrategyAdapter()
         vdb.recyclerView.apply {
             layoutManager = manager
-
+            adapter = strategyAdapter
+        }
+        vm.getAll().observe(this) {
+            strategyAdapter.notifyDataSetChanged(it)
         }
     }
 
@@ -36,6 +40,6 @@ class StrategyFragment : BaseFragment<FragmentStrategyBinding>() {
     }
 
     fun openAddStrategy() {
-        startFragment(AddStrategyFragment::class.java)
+        startFragment(EditStrategyFragment::class.java)
     }
 }

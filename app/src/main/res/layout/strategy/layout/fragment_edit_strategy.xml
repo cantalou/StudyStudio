@@ -2,13 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.strategy.fragment.AddStrategyFragment">
+    tools:context=".ui.strategy.fragment.EditStrategyFragment">
 
     <data>
 
         <variable
             name="fragment"
-            type="com.wy.studystudio.ui.strategy.fragment.AddStrategyFragment" />
+            type="com.wy.studystudio.ui.strategy.fragment.EditStrategyFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -24,8 +24,9 @@
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/fab_margin"
-            android:onClick="@{() -> fragment.addItem()}"
+            android:layout_marginRight="25dp"
+            android:layout_marginBottom="35dp"
+            android:onClick="@{() -> fragment.addPhase()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:srcCompat="@android:drawable/ic_menu_add" />

@@ -12,7 +12,7 @@ import com.wy.studystudio.ui.strategy.model.Phase
  *
  * Copyright (c) 2020年, WY CO.ltd. All Rights Reserved.
  */
-class PhaseAdapter(data: MutableList<Phase>) : BaseAdapter<Phase>(data) {
+class PhaseAdapter : BaseAdapter<Phase>() {
     override fun layoutId(): Int {
         return R.layout.item_phase
     }

@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.wy.studystudio.BR
 import com.wy.studystudio.R
@@ -16,7 +17,9 @@ import com.wy.studystudio.R
  *
  * Copyright (c) 2020年, WY CO.ltd. All Rights Reserved.
  */
-abstract class BaseAdapter<T>(var data: MutableList<T>) : RecyclerView.Adapter<DBViewHolder>() {
+abstract class BaseAdapter<T>() : RecyclerView.Adapter<DBViewHolder>() {
+
+    var data: MutableList<T> = mutableListOf()
 
     abstract fun layoutId(): Int
 
@@ -32,6 +35,7 @@ abstract class BaseAdapter<T>(var data: MutableList<T>) : RecyclerView.Adapter<D
     override fun onBindViewHolder(holder: DBViewHolder, position: Int) {
         holder.vdb.setVariable(BR.item, data[position])
         holder.vdb.setVariable(BR.adapter, this)
+        holder.vdb.setVariable(BR.position, position)
     }
 
     fun notifyDataSetChanged(newData: List<T>) {
