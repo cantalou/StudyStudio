@@ -5,7 +5,7 @@
     android:id="@+id/parents"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.common.StandardActivity">
+    tools:context=".ui.common.activity.StandardActivity">
 
     <FrameLayout
         android:id="@+id/container"

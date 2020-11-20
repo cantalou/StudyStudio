@@ -18,15 +18,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_gravity="bottom|end"
             android:layout_marginRight="25dp"
             android:layout_marginBottom="35dp"
             android:onClick="@{() -> fragment.openAddStrategy()}"
-            app:srcCompat="@android:drawable/ic_menu_add"/>
+            android:src="@drawable/add"/>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

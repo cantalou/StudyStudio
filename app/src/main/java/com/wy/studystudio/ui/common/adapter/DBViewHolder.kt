@@ -1,4 +1,4 @@
-package com.wy.studystudio.ui.common
+package com.wy.studystudio.ui.common.adapter
 
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView

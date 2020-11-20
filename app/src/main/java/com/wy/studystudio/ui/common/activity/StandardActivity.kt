@@ -1,10 +1,11 @@
-package com.wy.studystudio.ui.common
+package com.wy.studystudio.ui.common.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.wy.studystudio.R
 import com.wy.studystudio.extension.d
+import com.wy.studystudio.ui.common.fragment.BaseFragment
 import kotlinx.android.synthetic.main.activity_standard.*
 
 class StandardActivity : AppCompatActivity() {

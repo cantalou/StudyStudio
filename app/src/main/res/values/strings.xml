@@ -4,10 +4,11 @@
     <string name="title_dashboard">今日任务</string>
     <string name="title_notifications">通知提醒</string>
     <string name="title_activity_strategy">策略管理</string>
-    <string name="phase_title">第%1$s个记忆周期:%2$s</string>
+    <string name="phase_title">第%1$s个记忆周期: %2$s</string>
     <string name="last_phase_title">上一个周期:%1$s</string>
-    
-    <array name="days">
+    <string name="strategy_desc">复习时间点的确定, 根据艾宾浩斯记忆曲线来制定: </string>
+
+    <string-array name="days">
         <item>0</item>
         <item>1</item>
         <item>2</item>
@@ -24,9 +25,9 @@
         <item>13</item>
         <item>14</item>
         <item>15</item>
-    </array>
+    </string-array>
 
-    <array name="hour">
+    <string-array name="hour">
         <item>0</item>
         <item>1</item>
         <item>2</item>
@@ -51,9 +52,9 @@
         <item>21</item>
         <item>22</item>
         <item>23</item>
-    </array>
+    </string-array>
 
-    <array name="minute">
+    <string-array name="minute">
         <item>0</item>
         <item>5</item>
         <item>10</item>
@@ -67,5 +68,23 @@
         <item>50</item>
         <item>55</item>
         <item>60</item>
-    </array>
+    </string-array>
+
+    <string-array name="cn_number">
+        <item>一</item>
+        <item>二</item>
+        <item>三</item>
+        <item>四</item>
+        <item>五</item>
+        <item>六</item>
+        <item>七</item>
+        <item>八</item>
+        <item>九</item>
+        <item>十</item>
+        <item>十一</item>
+        <item>十二</item>
+        <item>十三</item>
+        <item>十四</item>
+        <item>十五</item>
+    </string-array>
 </resources>

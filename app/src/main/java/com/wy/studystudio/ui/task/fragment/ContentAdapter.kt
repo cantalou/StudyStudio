@@ -1,4 +1,4 @@
-package com.wy.studystudio.ui.strategy.fragment
+package com.wy.studystudio.ui.task.fragment
 
 import android.os.Bundle
 import android.view.View
@@ -15,13 +15,13 @@ import com.wy.studystudio.ui.strategy.model.Strategy
  *
  * Copyright (c) 2020年, WY CO.ltd. All Rights Reserved.
  */
-class StrategyAdapter : BaseAdapter<Strategy>() {
+class ContentAdapter : BaseAdapter<Strategy>() {
 
     override fun layoutId(): Int {
         return R.layout.item_strategy
     }
 
     fun edit(view: View, strategy: Strategy) {
-        view.context.startFragment(EditStrategyFragment::class.java, 0, Bundle().apply { putLong("strategyId", strategy.id) })
+        view.context.startFragment(EditContentFragment::class.java, 0, Bundle().apply { putLong("taskId", strategy.id) })
     }
 }

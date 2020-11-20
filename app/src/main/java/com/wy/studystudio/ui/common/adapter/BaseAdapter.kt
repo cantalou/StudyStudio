@@ -1,13 +1,12 @@
-package com.wy.studystudio.ui.common
+package com.wy.studystudio.ui.common.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.wy.studystudio.BR
-import com.wy.studystudio.R
 
 /**
  *
@@ -20,6 +19,8 @@ import com.wy.studystudio.R
 abstract class BaseAdapter<T>() : RecyclerView.Adapter<DBViewHolder>() {
 
     var data: MutableList<T> = mutableListOf()
+
+    lateinit var context: Context
 
     abstract fun layoutId(): Int
 
@@ -42,5 +43,10 @@ abstract class BaseAdapter<T>() : RecyclerView.Adapter<DBViewHolder>() {
         data.clear()
         data.addAll(newData)
         notifyDataSetChanged()
+    }
+
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        super.onAttachedToRecyclerView(recyclerView)
+        context = recyclerView.context
     }
 }

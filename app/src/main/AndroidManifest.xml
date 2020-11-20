@@ -8,10 +8,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.StudyStudio">
+        android:theme="@style/Theme.StudyStudio"
+        android:name=".SSApplication">
 
         <activity
-            android:name=".ui.common.StandardActivity"
+            android:name=".ui.common.activity.StandardActivity"
             android:theme="@style/Theme.StudyStudio.NoActionBar" />
 
         <meta-data

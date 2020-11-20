@@ -5,7 +5,7 @@
 
         <variable
             name="fragment"
-            type="com.wy.studystudio.ui.task.fragment.TaskFragment" />
+            type="com.wy.studystudio.ui.task.fragment.EditTaskFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -15,18 +15,13 @@
         android:layout_height="match_parent"
         tools:context=".ui.task.fragment.TaskFragment">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="bottom|end"
             android:layout_marginRight="25dp"
             android:layout_marginBottom="35dp"
-            android:onClick="@{() -> fragment.addTask()}"
+            android:onClick="@{() -> fragment.addContent()}"
             android:src="@drawable/add"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent" />

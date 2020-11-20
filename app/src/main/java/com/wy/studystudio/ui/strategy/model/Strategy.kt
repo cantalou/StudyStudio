@@ -2,6 +2,7 @@ package com.wy.studystudio.ui.strategy.model
 
 import android.os.Parcel
 import android.os.Parcelable
+import com.wy.studystudio.ui.common.livedata.MutableListWithLiveData
 import kotlin.collections.ArrayList
 
 /**
@@ -11,11 +12,11 @@ import kotlin.collections.ArrayList
  *
  * Copyright (c) 2020年, WY CO.ltd. All Rights Reserved.
  */
-data class Strategy(val id: Long, var name: String, var phases: ArrayList<Phase> = ArrayList()) : Parcelable {
+data class Strategy(var id: Long, var name: String = "", var phases: MutableListWithLiveData<Phase> = MutableListWithLiveData<Phase>()) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readLong(),
         parcel.readString()!!,
-        ArrayList(parcel.createTypedArrayList(Phase.CREATOR))
+        MutableListWithLiveData(parcel.createTypedArrayList<Phase>(Phase.CREATOR) as ArrayList<Phase>)
     ) {
     }
 
@@ -29,6 +30,21 @@ data class Strategy(val id: Long, var name: String, var phases: ArrayList<Phase>
         return 0
     }
 
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as Strategy
+
+        if (id != other.id) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        return id.hashCode()
+    }
+
     companion object CREATOR : Parcelable.Creator<Strategy> {
         override fun createFromParcel(parcel: Parcel): Strategy {
             return Strategy(parcel)
@@ -38,5 +54,6 @@ data class Strategy(val id: Long, var name: String, var phases: ArrayList<Phase>
             return arrayOfNulls(size)
         }
     }
+
 
 }

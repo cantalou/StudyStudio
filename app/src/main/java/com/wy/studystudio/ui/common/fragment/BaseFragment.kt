@@ -1,4 +1,4 @@
-package com.wy.studystudio.ui.common
+package com.wy.studystudio.ui.common.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater

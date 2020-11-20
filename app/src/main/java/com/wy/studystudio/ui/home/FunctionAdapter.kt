@@ -4,7 +4,7 @@ import android.view.View
 
 import com.wy.studystudio.R
 import com.wy.studystudio.extension.startFragment
-import com.wy.studystudio.ui.common.BaseAdapter
+import com.wy.studystudio.ui.common.adapter.BaseAdapter
 
 /**
  *

@@ -29,62 +29,71 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="下一个周期:"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="20dp"
+            android:text="本次复习周期:" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="天数: "/>
+                android:text="天数: " />
+
             <Spinner
                 android:id="@+id/days"
-                android:layout_marginLeft="10dp"
-                android:layout_width="160dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:spinnerMode="dialog"/>
+                android:layout_marginLeft="10dp"
+                android:dropDownWidth="60dp"
+                android:entries="@array/days"
+                android:spinnerMode="dropdown" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="小时: "/>
+                android:text="小时: " />
+
             <Spinner
                 android:id="@+id/hour"
-                android:layout_marginLeft="10dp"
-                android:layout_width="160dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:spinnerMode="dialog"/>
+                android:layout_marginLeft="10dp"
+                android:dropDownWidth="60dp"
+                android:entries="@array/hour"
+                android:spinnerMode="dropdown" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="分钟: "/>
+                android:text="分钟: " />
+
             <Spinner
                 android:id="@+id/minute"
-                android:layout_marginLeft="10dp"
-                android:layout_width="160dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:spinnerMode="dialog"/>
+                android:layout_marginLeft="10dp"
+                android:dropDownWidth="60dp"
+                android:entries="@array/minute"
+                android:spinnerMode="dropdown" />
         </LinearLayout>
 
-
     </LinearLayout>
-
-
 </layout>
