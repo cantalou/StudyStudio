@@ -5,11 +5,10 @@ import android.content.Context
 
 /**
  *
- *
- * @author  LinZhiWei
+ * @author  cantalou
  * @date    2020/11/20
  *
- * Copyright (c) 2020年, 4399 Network CO.ltd. All Rights Reserved.
+ * Copyright (c) 2020年, WY Network CO.ltd. All Rights Reserved.
  */
 class SSApplication : Application() {
 
