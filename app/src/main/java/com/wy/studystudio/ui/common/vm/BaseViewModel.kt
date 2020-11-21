@@ -5,15 +5,22 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.wy.studystudio.ui.common.livedata.MutableListWithLiveData
+import com.wy.studystudio.ui.common.model.BaseModel
+import java.lang.reflect.ParameterizedType
 
 /**
- *
  *
  * @author  cantalou
  * @date    2020/11/16
  *
  */
-open class BaseViewModel<T>(application: Application, val repository: BaseRepository<T>) : AndroidViewModel(application) {
+open abstract class BaseViewModel<T : BaseModel>(application: Application, val repository: BaseRepository<T>) : AndroidViewModel(application) {
+
+    private val modelClazz:Class<T> by lazy {
+        ((javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[0] as Class<T>)
+    }
+
+    protected var newModel: T? = null
 
     private val liveData: MutableLiveData<List<T>> = MutableLiveData()
 
@@ -29,6 +36,13 @@ open class BaseViewModel<T>(application: Application, val repository: BaseReposi
             return dataCached
         }
         return dataCached
+    }
+
+    open fun get(id: Long): T {
+        if (id == newModel?.id) {
+            return newModel!!
+        }
+        return dataCached.find { it.id == id }!!
     }
 
     fun add(strategy: T) {
@@ -62,5 +76,12 @@ open class BaseViewModel<T>(application: Application, val repository: BaseReposi
         dataCached.clear()
         dataCached.addAll(data)
         repository.saveAll(dataCached)
+    }
+
+    fun createModel(): T {
+        val newId = if (dataCached.size > 0) dataCached[dataCached.size - 1].id + 1 else 1L
+        newModel = modelClazz.newInstance()
+        newModel!!.id = newId
+        return newModel!!
     }
 }

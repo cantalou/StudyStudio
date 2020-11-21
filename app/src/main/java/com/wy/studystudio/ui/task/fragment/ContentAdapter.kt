@@ -6,6 +6,7 @@ import com.wy.studystudio.R
 import com.wy.studystudio.extension.startFragment
 import com.wy.studystudio.ui.common.adapter.BaseAdapter
 import com.wy.studystudio.ui.strategy.model.Strategy
+import com.wy.studystudio.ui.task.model.Content
 
 /**
  *
@@ -15,13 +16,13 @@ import com.wy.studystudio.ui.strategy.model.Strategy
  *
  * Copyright (c) 2020年, WY CO.ltd. All Rights Reserved.
  */
-class ContentAdapter : BaseAdapter<Strategy>() {
+class ContentAdapter : BaseAdapter<Content>() {
 
     override fun layoutId(): Int {
         return R.layout.item_strategy
     }
 
-    fun edit(view: View, strategy: Strategy) {
-        view.context.startFragment(EditContentFragment::class.java, 0, Bundle().apply { putLong("taskId", strategy.id) })
+    fun edit(view: View, content: Content) {
+        view.context.startFragment(EditContentFragment::class.java, 0, Bundle().apply { putParcelable("content", content) })
     }
 }

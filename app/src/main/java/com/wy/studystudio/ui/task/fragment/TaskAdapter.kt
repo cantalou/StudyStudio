@@ -5,11 +5,9 @@ import android.view.View
 import com.wy.studystudio.R
 import com.wy.studystudio.extension.startFragment
 import com.wy.studystudio.ui.common.adapter.BaseAdapter
-import com.wy.studystudio.ui.strategy.model.Strategy
 import com.wy.studystudio.ui.task.model.Task
 
 /**
- *
  *
  * @author  cantalou
  * @date    2020年11月15日 22:50
@@ -22,7 +20,7 @@ class TaskAdapter : BaseAdapter<Task>() {
         return R.layout.item_task
     }
 
-    fun edit(view: View, strategy: Strategy) {
-        view.context.startFragment(EditContentFragment::class.java, 0, Bundle().apply { putLong("taskId", strategy.id) })
+    fun edit(view: View, task: Task) {
+        view.context.startFragment(EditContentFragment::class.java, 0, Bundle().apply { putLong("taskId", task.id) })
     }
 }

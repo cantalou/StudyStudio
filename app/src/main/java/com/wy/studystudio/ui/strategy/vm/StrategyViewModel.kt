@@ -1,15 +1,13 @@
 package com.wy.studystudio.ui.strategy.vm
 
 import android.app.Application
-import com.wy.studystudio.ui.common.vm.BaseViewModel
 import com.wy.studystudio.ui.common.livedata.MutableListWithLiveData
+import com.wy.studystudio.ui.common.vm.BaseViewModel
 import com.wy.studystudio.ui.strategy.model.Phase
 import com.wy.studystudio.ui.strategy.model.Strategy
 
 
 class StrategyViewModel(app: Application) : BaseViewModel<Strategy>(app, StrategyRepository(app)) {
-
-    private var newStrategy: Strategy? = null
 
     override fun getAll(): MutableList<Strategy> {
         val result = super.getAll()
@@ -35,7 +33,7 @@ class StrategyViewModel(app: Application) : BaseViewModel<Strategy>(app, Strateg
     }
 
     fun addOrUpdate(phase: Phase) {
-        var strategy = dataCached.find { it.id == phase.strategyId } ?: newStrategy!!
+        var strategy = dataCached.find { it.id == phase.strategyId } ?: newModel!!
         if (phase.id == 0L) {
             val size = strategy.phases.size
             phase.id = if (size > 0) strategy.phases[size - 1].id + 1 else 1L
@@ -44,18 +42,4 @@ class StrategyViewModel(app: Application) : BaseViewModel<Strategy>(app, Strateg
             strategy.phases.find { it.id == phase.id }!!.interval = phase.interval
         }
     }
-
-    fun get(id: Long): Strategy {
-        if (id == newStrategy?.id) {
-            return newStrategy!!
-        }
-        return dataCached.find { it.id == id }!!
-    }
-
-    fun createNewStrategy(): Strategy {
-        val strategyId = if (dataCached.size > 0) dataCached[dataCached.size - 1].id + 1 else 1L
-        newStrategy = Strategy(strategyId, "", MutableListWithLiveData())
-        return newStrategy!!
-    }
-
 }

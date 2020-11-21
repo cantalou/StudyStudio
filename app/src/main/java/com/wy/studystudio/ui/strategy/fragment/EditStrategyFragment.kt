@@ -38,7 +38,7 @@ class EditStrategyFragment : BaseFragment<FragmentEditStrategyBinding>() {
             strategy = vm.get(it)
         }
         if (strategy == null) {
-            strategy = vm.createNewStrategy()
+            strategy = vm.createModel()
         }
         strategy!!.phases.mutableLiveData = phaseLiveData
     }

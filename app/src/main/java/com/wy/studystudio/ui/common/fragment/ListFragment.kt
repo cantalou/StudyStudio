@@ -5,6 +5,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.wy.studystudio.ui.common.adapter.BaseAdapter
+import com.wy.studystudio.ui.common.model.BaseModel
 import com.wy.studystudio.ui.common.vm.BaseRepository
 import com.wy.studystudio.ui.common.vm.BaseViewModel
 import com.wy.studystudio.ui.strategy.fragment.StrategyAdapter
@@ -19,7 +20,7 @@ import java.lang.reflect.ParameterizedType
  *
  * Copyright (c) 2020年, WY Network CO.ltd. All Rights Reserved.
  */
-abstract class ListFragment<V : ViewDataBinding, T, M : BaseViewModel<T>, A : BaseAdapter<T>>() : BaseFragment<V>() {
+abstract class ListFragment<V : ViewDataBinding, T : BaseModel, M : BaseViewModel<T>, A : BaseAdapter<T>>() : BaseFragment<V>() {
 
     lateinit var vm: M
 

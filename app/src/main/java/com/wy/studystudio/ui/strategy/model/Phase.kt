@@ -4,6 +4,7 @@ import android.os.Parcel
 import android.os.Parcelable
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
+import com.wy.studystudio.ui.common.model.BaseModel
 
 /**
  *
@@ -13,7 +14,7 @@ import androidx.databinding.Bindable
  *
  * Copyright (c) 2020年, WY CO.ltd. All Rights Reserved.
  */
-data class Phase(var id: Long, var interval: Long, var strategyId: Long = 0) : Parcelable {
+class Phase(id: Long, var interval: Long, var strategyId: Long = 0) : Parcelable, BaseModel(id) {
 
     constructor(parcel: Parcel) : this(
         parcel.readLong(),
@@ -30,21 +31,6 @@ data class Phase(var id: Long, var interval: Long, var strategyId: Long = 0) : P
 
     override fun describeContents(): Int {
         return 0
-    }
-
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (javaClass != other?.javaClass) return false
-
-        other as Phase
-
-        if (id != other.id) return false
-
-        return true
-    }
-
-    override fun hashCode(): Int {
-        return id.hashCode()
     }
 
     companion object CREATOR : Parcelable.Creator<Phase> {
@@ -68,14 +54,14 @@ data class Phase(var id: Long, var interval: Long, var strategyId: Long = 0) : P
     }
 
     fun desc(): String {
-        val days = interval /DAY_INTERVAL
-        if(days > 0){
+        val days = interval / DAY_INTERVAL
+        if (days > 0) {
             return "${days}天"
         }
 
         interval %= DAY_INTERVAL
         val hours = interval / HOUR_INTERVAL
-        if(hours > 0){
+        if (hours > 0) {
             return "${hours}小时"
         }
 

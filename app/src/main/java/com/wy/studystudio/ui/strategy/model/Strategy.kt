@@ -3,6 +3,7 @@ package com.wy.studystudio.ui.strategy.model
 import android.os.Parcel
 import android.os.Parcelable
 import com.wy.studystudio.ui.common.livedata.MutableListWithLiveData
+import com.wy.studystudio.ui.common.model.BaseModel
 import kotlin.collections.ArrayList
 
 /**
@@ -12,7 +13,10 @@ import kotlin.collections.ArrayList
  *
  * Copyright (c) 2020年, WY CO.ltd. All Rights Reserved.
  */
-data class Strategy(var id: Long, var name: String = "", var phases: MutableListWithLiveData<Phase> = MutableListWithLiveData<Phase>()) : Parcelable {
+class Strategy(id: Long = 0, var name: String = "", var phases: MutableListWithLiveData<Phase> = MutableListWithLiveData<Phase>()) : Parcelable,BaseModel(id){
+
+    constructor():this(0)
+
     constructor(parcel: Parcel) : this(
         parcel.readLong(),
         parcel.readString()!!,
@@ -28,21 +32,6 @@ data class Strategy(var id: Long, var name: String = "", var phases: MutableList
 
     override fun describeContents(): Int {
         return 0
-    }
-
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (javaClass != other?.javaClass) return false
-
-        other as Strategy
-
-        if (id != other.id) return false
-
-        return true
-    }
-
-    override fun hashCode(): Int {
-        return id.hashCode()
     }
 
     companion object CREATOR : Parcelable.Creator<Strategy> {

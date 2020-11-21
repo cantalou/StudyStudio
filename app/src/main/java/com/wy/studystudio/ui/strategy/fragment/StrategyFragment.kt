@@ -26,7 +26,7 @@ class StrategyFragment : ListFragment<FragmentStrategyBinding, Strategy, Strateg
     }
 
     fun openAddStrategy() {
-        vm.createNewStrategy()
+        vm.createModel()
         startFragment(EditStrategyFragment::class.java)
     }
 

@@ -15,6 +15,9 @@ class FunctionRepository {
     suspend fun getFunctions(): List<Function> = withContext(Dispatchers.IO) {
         val list = mutableListOf<Function>()
         list.add(Function("com.wy.studystudio.ui.strategy.fragment.StrategyFragment", "", "复习策略"))
+        list.add(Function("com.wy.studystudio.ui.strategy.fragment.StrategyFragment", "", "复习策略"))
+        list.add(Function("com.wy.studystudio.ui.strategy.fragment.StrategyFragment", "", "复习策略"))
+        list.add(Function("com.wy.studystudio.ui.strategy.fragment.StrategyFragment", "", "复习策略"))
         return@withContext list
     }
 }

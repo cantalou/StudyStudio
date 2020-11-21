@@ -1,25 +1,43 @@
 package com.wy.studystudio.ui.task.model
 
+import android.os.Parcel
+import android.os.Parcelable
+import com.wy.studystudio.ui.common.model.BaseModel
+
 /**
  *
  * @date    2020/11/19
  *
  */
-data class Content(val id: Long, val type: Int, val taskId: Long, val content: String) {
+class Content(id: Long = 0, val type: Int = 0, val taskId: Long = 0, val content: String = "") : BaseModel(id), Parcelable {
 
-
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (javaClass != other?.javaClass) return false
-
-        other as Content
-
-        if (id != other.id) return false
-
-        return true
+    constructor(parcel: Parcel) : this(
+        parcel.readLong(),
+        parcel.readInt(),
+        parcel.readLong(),
+        parcel.readString()!!
+    ) {
     }
 
-    override fun hashCode(): Int {
-        return id.hashCode()
+    constructor() : this(0)
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeInt(type)
+        parcel.writeLong(taskId)
+        parcel.writeString(content)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<Content> {
+        override fun createFromParcel(parcel: Parcel): Content {
+            return Content(parcel)
+        }
+
+        override fun newArray(size: Int): Array<Content?> {
+            return arrayOfNulls(size)
+        }
     }
 }
