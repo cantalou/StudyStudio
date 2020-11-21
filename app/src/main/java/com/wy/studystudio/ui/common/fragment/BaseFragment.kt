@@ -22,7 +22,7 @@ import kotlinx.coroutines.cancel
  */
 abstract class BaseFragment<T : ViewDataBinding> : Fragment(), CoroutineScope by MainScope() {
 
-    lateinit var content: ViewGroup
+    lateinit var viewRoot: ViewGroup
 
     lateinit var vdb: T
 
@@ -39,10 +39,10 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment(), CoroutineScope by
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         vdb = DataBindingUtil.inflate<T>(inflater, layoutId(), container, false)
         vdb.setVariable(BR.fragment, this)
-        content = vdb.root as ViewGroup
+        viewRoot = vdb.root as ViewGroup
         initData()
-        initView(content)
-        return content
+        initView(viewRoot)
+        return viewRoot
     }
 
     open fun initView(content: ViewGroup) {

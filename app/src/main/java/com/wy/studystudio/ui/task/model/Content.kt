@@ -9,7 +9,7 @@ import com.wy.studystudio.ui.common.model.BaseModel
  * @date    2020/11/19
  *
  */
-class Content(id: Long = 0, val type: Int = 0, val taskId: Long = 0, val content: String = "") : BaseModel(id), Parcelable {
+class Content(id: Long = 0, var type: Int = 0, val taskId: Long = 0, var content: String = "") : BaseModel(id), Parcelable {
 
     constructor(parcel: Parcel) : this(
         parcel.readLong(),
@@ -32,6 +32,14 @@ class Content(id: Long = 0, val type: Int = 0, val taskId: Long = 0, val content
     }
 
     companion object CREATOR : Parcelable.Creator<Content> {
+
+        const val TYPE_TEXT = 0
+
+        const val TYPE_IMAGE = 0
+
+        const val TYPE_VIDEO = 0
+
+
         override fun createFromParcel(parcel: Parcel): Content {
             return Content(parcel)
         }

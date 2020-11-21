@@ -14,7 +14,7 @@ import java.lang.reflect.ParameterizedType
  * @date    2020/11/16
  *
  */
-open abstract class BaseViewModel<T : BaseModel>(application: Application, val repository: BaseRepository<T>) : AndroidViewModel(application) {
+abstract class BaseViewModel<T : BaseModel>(application: Application, val repository: BaseRepository<T>) : AndroidViewModel(application) {
 
     private val modelClazz:Class<T> by lazy {
         ((javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[0] as Class<T>)
@@ -39,6 +39,7 @@ open abstract class BaseViewModel<T : BaseModel>(application: Application, val r
     }
 
     open fun get(id: Long): T {
+        getAll()
         if (id == newModel?.id) {
             return newModel!!
         }
@@ -46,11 +47,13 @@ open abstract class BaseViewModel<T : BaseModel>(application: Application, val r
     }
 
     fun add(strategy: T) {
+        getAll()
         dataCached.add(strategy)
         repository.saveAll(dataCached)
     }
 
     fun addOrUpdate(strategy: T) {
+        getAll()
         if (dataCached.contains(strategy)) {
             update(strategy)
         } else {
@@ -59,6 +62,7 @@ open abstract class BaseViewModel<T : BaseModel>(application: Application, val r
     }
 
     fun update(strategy: T) {
+        getAll()
         dataCached.forEachIndexed { index, item ->
             if (item == strategy) {
                 dataCached[index] = strategy

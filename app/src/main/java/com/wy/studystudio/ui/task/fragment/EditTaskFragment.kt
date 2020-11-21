@@ -1,5 +1,6 @@
 package com.wy.studystudio.ui.task.fragment
 
+import android.os.Bundle
 import android.view.ViewGroup
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -8,6 +9,7 @@ import com.wy.studystudio.R
 import com.wy.studystudio.databinding.FragmentEditTaskBinding
 import com.wy.studystudio.extension.gvm
 import com.wy.studystudio.extension.showToast
+import com.wy.studystudio.extension.startFragment
 import com.wy.studystudio.ui.common.fragment.BaseFragment
 import com.wy.studystudio.ui.task.model.Content
 import com.wy.studystudio.ui.task.model.Task
@@ -81,8 +83,7 @@ class EditTaskFragment : BaseFragment<FragmentEditTaskBinding>() {
 
 
     fun addContent() {
-
+        startFragment(EditContentFragment::class.java, 0, Bundle().apply { putLong("taskId", task!!.id) })
     }
-
 
 }

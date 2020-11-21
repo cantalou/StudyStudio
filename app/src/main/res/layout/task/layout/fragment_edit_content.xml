@@ -5,7 +5,7 @@
 
         <variable
             name="fragment"
-            type="com.wy.studystudio.ui.task.fragment.EditTaskFragment" />
+            type="com.wy.studystudio.ui.task.fragment.EditContentFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -13,18 +13,72 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.task.fragment.TaskFragment">
+        tools:context=".ui.task.fragment.EditContentFragment">
 
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="bottom|end"
-            android:layout_marginRight="25dp"
-            android:layout_marginBottom="35dp"
-            android:onClick="@{() -> fragment.addContent()}"
-            android:src="@drawable/add"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginBottom="20dp"
+            android:src="@color/black_999999"
+            app:layout_constraintBottom_toTopOf="@+id/file" />
+
+        <ImageView
+            android:id="@+id/file"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
+            android:src="@drawable/file"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toRightOf="parent" />
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/capture"
+            android:onClick="@{() -> fragment.openFileChoose()}"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="文件"
+            app:layout_constraintLeft_toLeftOf="@+id/file"
+            app:layout_constraintRight_toRightOf="@+id/file"
+            app:layout_constraintTop_toBottomOf="@+id/file"
+            android:onClick="@{() -> fragment.openFileChoose()}"/>
+
+        <ImageView
+            android:id="@+id/capture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/capture"
+            app:layout_constraintLeft_toRightOf="@+id/file"
+            app:layout_constraintRight_toLeftOf="@+id/video"
+            app:layout_constraintTop_toTopOf="@+id/file"
+            android:onClick="@{() -> fragment.openCamera()}"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="拍照"
+            app:layout_constraintLeft_toLeftOf="@+id/capture"
+            app:layout_constraintRight_toRightOf="@+id/capture"
+            app:layout_constraintTop_toBottomOf="@+id/capture"
+            android:onClick="@{() -> fragment.openCamera()}"/>
+
+        <ImageView
+            android:id="@+id/video"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/video"
+            app:layout_constraintLeft_toRightOf="@+id/capture"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/file"
+            android:onClick="@{() -> fragment.openVideoChoose()}"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="视频"
+            app:layout_constraintLeft_toLeftOf="@+id/video"
+            app:layout_constraintRight_toRightOf="@+id/video"
+            app:layout_constraintTop_toBottomOf="@+id/video"
+            android:onClick="@{() -> fragment.openVideoChoose()}"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

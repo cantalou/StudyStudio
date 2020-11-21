@@ -21,6 +21,6 @@ class TaskAdapter : BaseAdapter<Task>() {
     }
 
     fun edit(view: View, task: Task) {
-        view.context.startFragment(EditContentFragment::class.java, 0, Bundle().apply { putLong("taskId", task.id) })
+        view.context.startFragment(ShowTaskFragment::class.java, 0, Bundle().apply { putParcelable("task", task) })
     }
 }
