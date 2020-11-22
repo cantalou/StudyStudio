@@ -18,6 +18,7 @@ import com.wy.studystudio.ui.task.vm.TaskViewModel
 import com.zhihu.matisse.Matisse
 import com.zhihu.matisse.MimeType
 import com.zhihu.matisse.engine.impl.GlideEngine
+import com.zhihu.matisse.internal.entity.SelectionSpec
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
@@ -107,10 +108,11 @@ class EditContentFragment : BaseFragment<FragmentEditContentBinding>() {
         Matisse.from(this)
             .choose(MimeType.ofImage())
             .countable(true)
-            .maxSelectable(9)
+            .maxSelectable(20)
             .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
-            .thumbnailScale(0.85f)
+            .thumbnailScale(1f)
             .imageEngine(GlideEngine())
+            .spanCount(4)
             .forResult(DATA_REQUEST_CODE_IMAGE)
     }
 
