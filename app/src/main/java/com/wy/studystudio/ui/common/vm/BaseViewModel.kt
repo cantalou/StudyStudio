@@ -32,7 +32,10 @@ abstract class BaseViewModel<T : BaseModel>(application: Application, val reposi
 
     open fun getAll(): MutableList<T> {
         if (dataCached.isEmpty()) {
-            dataCached.addAll(repository.getAll())
+            val elements = repository.getAll()
+            if(elements.isNotEmpty()){
+                dataCached.addAll(elements)
+            }
             return dataCached
         }
         return dataCached

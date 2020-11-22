@@ -6,10 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.wy.studystudio.ui.common.adapter.BaseAdapter
 import com.wy.studystudio.ui.common.model.BaseModel
-import com.wy.studystudio.ui.common.vm.BaseRepository
 import com.wy.studystudio.ui.common.vm.BaseViewModel
-import com.wy.studystudio.ui.strategy.fragment.StrategyAdapter
-import com.wy.studystudio.ui.strategy.vm.StrategyViewModel
 import java.lang.reflect.ParameterizedType
 
 /**
@@ -24,7 +21,9 @@ abstract class ListFragment<V : ViewDataBinding, T : BaseModel, M : BaseViewMode
 
     lateinit var vm: M
 
-    abstract fun getAdapter(): A
+    val adapter: BaseAdapter<T> by lazy { createAdapter() }
+
+    abstract fun createAdapter(): A
 
     abstract fun getVM(): M
 
@@ -34,14 +33,13 @@ abstract class ListFragment<V : ViewDataBinding, T : BaseModel, M : BaseViewMode
     }
 
     override fun initView(viewRoot: ViewGroup) {
-        val strategyAdapter = getAdapter()
         vdb.root.findViewById<RecyclerView>(com.wy.studystudio.R.id.recycler_view).apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = strategyAdapter
+            adapter = adapter
         }
-        strategyAdapter.notifyDataSetChanged(vm.getAll())
+        adapter.notifyDataSetChanged(vm.getAll())
         vm.getAllLiveData().observeForever {
-            strategyAdapter.notifyDataSetChanged(it)
+            adapter.notifyDataSetChanged(it)
         }
     }
 }

@@ -65,6 +65,7 @@ class ShowTaskFragment : BaseFragment<FragmentShowTaskBinding>() {
                         task.phaseId = phases[index + 1].id
                     }
                     taskVM.update(task)
+                    return@forEachIndexed
                 }
             }
         }

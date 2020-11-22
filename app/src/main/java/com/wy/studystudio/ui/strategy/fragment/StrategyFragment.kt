@@ -30,7 +30,7 @@ class StrategyFragment : ListFragment<FragmentStrategyBinding, Strategy, Strateg
         startFragment(EditStrategyFragment::class.java)
     }
 
-    override fun getAdapter(): StrategyAdapter {
+    override fun createAdapter(): StrategyAdapter {
         return StrategyAdapter()
     }
 

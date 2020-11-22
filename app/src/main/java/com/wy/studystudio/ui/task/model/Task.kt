@@ -15,7 +15,7 @@ class Task(
     id: Long = 0,
     var name: String = "",
     val strategyId: Long = 0,
-    var phaseId: Long = 0,
+    var phaseId: Long = 1,
     var finishTime: Long = 0,
     var contents: MutableListWithLiveData<Content> = MutableListWithLiveData()
 ) : BaseModel(id), Parcelable {
