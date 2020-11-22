@@ -1,13 +1,26 @@
 package com.wy.studystudio.ui.task.fragment
 
+import android.app.Activity
 import android.content.Intent
+import android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION
+import android.content.pm.ActivityInfo
+import android.net.Uri
+import android.os.Build
+import android.provider.MediaStore
 import android.view.ViewGroup
+import androidx.core.content.FileProvider
 import com.wy.studystudio.R
 import com.wy.studystudio.databinding.FragmentEditContentBinding
 import com.wy.studystudio.extension.gvm
 import com.wy.studystudio.ui.common.fragment.BaseFragment
 import com.wy.studystudio.ui.task.model.Content
 import com.wy.studystudio.ui.task.vm.TaskViewModel
+import com.zhihu.matisse.Matisse
+import com.zhihu.matisse.MimeType
+import com.zhihu.matisse.engine.impl.GlideEngine
+import java.io.File
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 /**
@@ -23,11 +36,11 @@ class EditContentFragment : BaseFragment<FragmentEditContentBinding>() {
 
         const val DATA_REQUEST_CODE_FILE = 0;
 
-        const val DATA_REQUEST_CODE_CAPTURE = 1
+        const val DATA_REQUEST_CODE_TAKE_PHOTO = 1
 
         const val DATA_REQUEST_CODE_VIDEO = 2
 
-        const val DATA_REQUEST_CODE_IMAGE = 2
+        const val DATA_REQUEST_CODE_IMAGE = 3
     }
 
     lateinit var vm: TaskViewModel
@@ -55,8 +68,8 @@ class EditContentFragment : BaseFragment<FragmentEditContentBinding>() {
         }
     }
 
-    override fun initView(content: ViewGroup) {
-        super.initView(content)
+    override fun initView(viewRoot: ViewGroup) {
+        super.initView(viewRoot)
     }
 
     fun openFileChoose() {
@@ -67,7 +80,20 @@ class EditContentFragment : BaseFragment<FragmentEditContentBinding>() {
     }
 
     fun openCamera() {
-
+        val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        val filename: String = SimpleDateFormat("yyyyMMdd-HHmmss").format(Date()).toString() + ".png"
+        val activity = requireActivity()
+        val file = File(activity.getExternalFilesDir("camera"), filename)
+        content!!.content = file.absolutePath
+        lateinit var fileUri: Uri
+        fileUri = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            FileProvider.getUriForFile(activity, "${activity.packageName}.SSFileProvider", file)
+        } else {
+            Uri.fromFile(file)
+        }
+        takePictureIntent.addFlags(FLAG_GRANT_READ_URI_PERMISSION)
+        takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri)
+        startActivityForResult(takePictureIntent, DATA_REQUEST_CODE_TAKE_PHOTO)
     }
 
     fun openVideoChoose() {
@@ -78,14 +104,22 @@ class EditContentFragment : BaseFragment<FragmentEditContentBinding>() {
     }
 
     fun openImageChoose() {
-        val intent = Intent(Intent.ACTION_GET_CONTENT)
-        intent.addCategory(Intent.CATEGORY_OPENABLE)
-        intent.type = "image/*"
-        this.startActivityForResult(intent, DATA_REQUEST_CODE_IMAGE)
+        Matisse.from(this)
+            .choose(MimeType.ofImage())
+            .countable(true)
+            .maxSelectable(9)
+            .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
+            .thumbnailScale(0.85f)
+            .imageEngine(GlideEngine())
+            .forResult(DATA_REQUEST_CODE_IMAGE)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode != Activity.RESULT_OK) {
+            return
+        }
+
         val contents = vm.get(content!!.taskId).contents
         if (content!!.id == 0L) {
             content!!.id = contents.size + 1L
@@ -97,18 +131,24 @@ class EditContentFragment : BaseFragment<FragmentEditContentBinding>() {
                 content!!.type = Content.TYPE_TEXT
                 content!!.content = data!!.data.toString()
             }
-
-            DATA_REQUEST_CODE_IMAGE -> {
-                content!!.type = Content.TYPE_IMAGE
-                content!!.content = data!!.data.toString()
+            DATA_REQUEST_CODE_TAKE_PHOTO -> {
+                content!!.type = Content.TYPE_VIDEO
             }
 
             DATA_REQUEST_CODE_VIDEO -> {
                 content!!.type = Content.TYPE_VIDEO
                 content!!.content = data!!.data.toString()
             }
-        }
 
+            DATA_REQUEST_CODE_IMAGE -> {
+                contents.remove(content!!)
+                val selected = Matisse.obtainResult(data)
+                for (uri in selected) {
+                    val newContent = Content(contents.size + 1L, Content.TYPE_IMAGE, content!!.taskId, uri.toString())
+                    contents.add(newContent)
+                }
+            }
+        }
         requireActivity().finish()
     }
 }

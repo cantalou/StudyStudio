@@ -20,7 +20,11 @@ class TaskAdapter : BaseAdapter<Task>() {
         return R.layout.item_task
     }
 
-    fun edit(view: View, task: Task) {
+    fun show(view: View, task: Task) {
         view.context.startFragment(ShowTaskFragment::class.java, 0, Bundle().apply { putParcelable("task", task) })
+    }
+
+    fun edit(view: View, task: Task) {
+        view.context.startFragment(EditTaskFragment::class.java, 0, Bundle().apply { putLong("taskId", task.id) })
     }
 }

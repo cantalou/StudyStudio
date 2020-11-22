@@ -33,7 +33,7 @@ abstract class ListFragment<V : ViewDataBinding, T : BaseModel, M : BaseViewMode
         vm = getVM()
     }
 
-    override fun initView(content: ViewGroup) {
+    override fun initView(viewRoot: ViewGroup) {
         val strategyAdapter = getAdapter()
         vdb.root.findViewById<RecyclerView>(com.wy.studystudio.R.id.recycler_view).apply {
             layoutManager = LinearLayoutManager(context)

@@ -40,7 +40,7 @@ class EditPhaseFragment : BaseFragment<FragmentEditPhaseBinding>() {
         }
     }
 
-    override fun initView(content: ViewGroup) {
+    override fun initView(viewRoot: ViewGroup) {
 
         phase?.apply {
             var interval = this.interval

@@ -13,7 +13,7 @@ import com.wy.studystudio.ui.strategy.model.Phase
  */
 class Task(
     id: Long = 0,
-    val name: String = "",
+    var name: String = "",
     val strategyId: Long = 0,
     var phaseId: Long = 0,
     var finishTime: Long = 0,

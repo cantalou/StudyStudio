@@ -47,13 +47,11 @@ abstract class BaseViewModel<T : BaseModel>(application: Application, val reposi
     }
 
     fun add(strategy: T) {
-        getAll()
         dataCached.add(strategy)
         repository.saveAll(dataCached)
     }
 
     fun addOrUpdate(strategy: T) {
-        getAll()
         if (dataCached.contains(strategy)) {
             update(strategy)
         } else {
@@ -62,7 +60,6 @@ abstract class BaseViewModel<T : BaseModel>(application: Application, val reposi
     }
 
     fun update(strategy: T) {
-        getAll()
         dataCached.forEachIndexed { index, item ->
             if (item == strategy) {
                 dataCached[index] = strategy

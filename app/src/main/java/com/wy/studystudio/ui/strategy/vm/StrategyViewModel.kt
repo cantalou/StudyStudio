@@ -18,7 +18,7 @@ class StrategyViewModel(app: Application) : BaseViewModel<Strategy>(app, Strateg
     }
 
     private fun crateDefault(): Strategy {
-        val strategy = Strategy(1L, "艾宾浩斯默认策略")
+        val strategy = Strategy(0L, "艾宾浩斯默认策略")
         strategy.phases.apply {
             add(Phase(1, Phase.MINUTE_INTERVAL * 5, 1))
             add(Phase(2, Phase.MINUTE_INTERVAL * 30, 1))

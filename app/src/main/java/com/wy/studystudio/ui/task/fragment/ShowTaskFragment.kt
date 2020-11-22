@@ -1,6 +1,9 @@
 package com.wy.studystudio.ui.task.fragment
 
+import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.wy.studystudio.R
 import com.wy.studystudio.databinding.FragmentShowTaskBinding
 import com.wy.studystudio.extension.gvm
@@ -8,6 +11,8 @@ import com.wy.studystudio.ui.common.fragment.BaseFragment
 import com.wy.studystudio.ui.strategy.vm.StrategyViewModel
 import com.wy.studystudio.ui.task.model.Task
 import com.wy.studystudio.ui.task.vm.TaskViewModel
+import kotlinx.android.synthetic.main.activity_standard.*
+
 
 /**
  *
@@ -34,13 +39,18 @@ class ShowTaskFragment : BaseFragment<FragmentShowTaskBinding>() {
         task = requireArguments().getParcelable<Task>("task")!!
     }
 
-    override fun initView(content: ViewGroup) {
-        super.initView(content)
+    override fun initView(viewRoot: ViewGroup) {
+        super.initView(viewRoot)
         val showContentAdapter = ShowContentAdapter(this, task)
         vdb.viewPager.apply {
             offscreenPageLimit = 2
             adapter = showContentAdapter
         }
+        requireActivity().toolbar.visibility = View.GONE
+        val layoutParams = requireActivity().container.layoutParams as ConstraintLayout.LayoutParams
+        layoutParams.topToTop = R.id.parent
+        layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT
+        requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
     }
 
     override fun onDestroy() {

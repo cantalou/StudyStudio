@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.CallSuper
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
@@ -45,7 +46,8 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment(), CoroutineScope by
         return viewRoot
     }
 
-    open fun initView(content: ViewGroup) {
+    @CallSuper
+    open fun initView(viewRoot: ViewGroup) {
 
     }
 

@@ -48,9 +48,11 @@ class EditTaskFragment : BaseFragment<FragmentEditTaskBinding>() {
             task = vm.createModel()
         }
         task!!.contents.mutableLiveData = contentLD
+        vdb.setVariable(BR.task, task)
     }
 
-    override fun initView(content: ViewGroup) {
+    override fun initView(viewRoot: ViewGroup) {
+        super.initView(viewRoot)
         val contentAdapter = ContentAdapter()
         vdb.recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
@@ -77,8 +79,6 @@ class EditTaskFragment : BaseFragment<FragmentEditTaskBinding>() {
             requireActivity().finish()
             return@setOnMenuItemClickListener true
         }
-
-        vdb.setVariable(BR.strategy, task)
     }
 
 

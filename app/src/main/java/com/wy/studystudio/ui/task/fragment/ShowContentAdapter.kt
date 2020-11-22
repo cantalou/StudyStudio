@@ -1,5 +1,6 @@
 package com.wy.studystudio.ui.task.fragment
 
+import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.wy.studystudio.ui.task.model.Content
@@ -24,6 +25,10 @@ class ShowContentAdapter(fragment: Fragment, val task: Task) : FragmentStateAdap
             Content.TYPE_VIDEO -> ContentVideoFragment()
             Content.TYPE_IMAGE -> ContentImageFragment()
             else -> ContentTextFragment()
+        }.apply {
+            arguments = Bundle().apply {
+                putParcelable("content", task.contents[position])
+            }
         }
     }
 }

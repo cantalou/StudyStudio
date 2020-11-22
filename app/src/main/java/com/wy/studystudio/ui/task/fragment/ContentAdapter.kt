@@ -19,7 +19,7 @@ import com.wy.studystudio.ui.task.model.Content
 class ContentAdapter : BaseAdapter<Content>() {
 
     override fun layoutId(): Int {
-        return R.layout.item_strategy
+        return R.layout.item_content
     }
 
     fun edit(view: View, content: Content) {

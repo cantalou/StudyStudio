@@ -43,7 +43,7 @@ class EditStrategyFragment : BaseFragment<FragmentEditStrategyBinding>() {
         strategy!!.phases.mutableLiveData = phaseLiveData
     }
 
-    override fun initView(content: ViewGroup) {
+    override fun initView(viewRoot: ViewGroup) {
         val phaseAdapter = PhaseAdapter()
         vdb.recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
