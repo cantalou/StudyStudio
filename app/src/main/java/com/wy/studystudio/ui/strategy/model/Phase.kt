@@ -36,7 +36,7 @@ class Phase(id: Long, var interval: Long, var strategyId: Long = 0) : Parcelable
     companion object CREATOR : Parcelable.Creator<Phase> {
 
         @JvmStatic
-        val MINUTE_INTERVAL = 60L
+        val MINUTE_INTERVAL = 60L * 1000
 
         @JvmStatic
         val HOUR_INTERVAL = 60 * MINUTE_INTERVAL

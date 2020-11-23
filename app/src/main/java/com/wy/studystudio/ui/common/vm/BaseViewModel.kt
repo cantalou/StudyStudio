@@ -16,7 +16,7 @@ import java.lang.reflect.ParameterizedType
  */
 abstract class BaseViewModel<T : BaseModel>(application: Application, val repository: BaseRepository<T>) : AndroidViewModel(application) {
 
-    private val modelClazz:Class<T> by lazy {
+    private val modelClazz: Class<T> by lazy {
         ((javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[0] as Class<T>)
     }
 
@@ -32,8 +32,10 @@ abstract class BaseViewModel<T : BaseModel>(application: Application, val reposi
 
     open fun getAll(): MutableList<T> {
         if (dataCached.isEmpty()) {
-            dataCached.addAll(repository.getAll())
-            return dataCached
+            val allData = repository.getAll()
+            if (allData.isNotEmpty()) {
+                dataCached.addAll(allData)
+            }
         }
         return dataCached
     }

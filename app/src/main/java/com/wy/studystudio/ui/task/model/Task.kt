@@ -15,14 +15,16 @@ class Task(
     id: Long = 0,
     var name: String = "",
     val strategyId: Long = 0,
-    var phaseId: Long = 0,
+    var phaseId: Long = 1,
     var finishTime: Long = 0,
+    var nextTime: Long = 0,
     var contents: MutableListWithLiveData<Content> = MutableListWithLiveData()
 ) : BaseModel(id), Parcelable {
 
     constructor(parcel: Parcel) : this(
         parcel.readLong(),
         parcel.readString()!!,
+        parcel.readLong(),
         parcel.readLong(),
         parcel.readLong(),
         parcel.readLong(),
@@ -38,6 +40,7 @@ class Task(
         parcel.writeLong(strategyId)
         parcel.writeLong(phaseId)
         parcel.writeLong(finishTime)
+        parcel.writeLong(nextTime)
         parcel.writeTypedList(contents)
     }
 
@@ -54,6 +57,5 @@ class Task(
             return arrayOfNulls(size)
         }
     }
-
 
 }

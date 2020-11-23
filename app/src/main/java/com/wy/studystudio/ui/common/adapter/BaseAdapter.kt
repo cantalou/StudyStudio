@@ -39,7 +39,7 @@ abstract class BaseAdapter<T>() : RecyclerView.Adapter<DBViewHolder>() {
         holder.vdb.setVariable(BR.position, position)
     }
 
-    fun notifyDataSetChanged(newData: List<T>) {
+    open fun notifyDataSetChanged(newData: List<T>) {
         data.clear()
         data.addAll(newData)
         notifyDataSetChanged()

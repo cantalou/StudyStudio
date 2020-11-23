@@ -20,14 +20,14 @@ class StrategyViewModel(app: Application) : BaseViewModel<Strategy>(app, Strateg
     private fun crateDefault(): Strategy {
         val strategy = Strategy(0L, "艾宾浩斯默认策略")
         strategy.phases.apply {
-            add(Phase(1, Phase.MINUTE_INTERVAL * 5, 1))
-            add(Phase(2, Phase.MINUTE_INTERVAL * 30, 1))
-            add(Phase(3, Phase.HOUR_INTERVAL * 12, 1))
-            add(Phase(4, Phase.DAY_INTERVAL * 1, 1))
-            add(Phase(5, Phase.DAY_INTERVAL * 2, 1))
-            add(Phase(6, Phase.DAY_INTERVAL * 4, 1))
-            add(Phase(7, Phase.DAY_INTERVAL * 7, 1))
-            add(Phase(8, Phase.DAY_INTERVAL * 14, 1))
+            add(Phase(1, Phase.MINUTE_INTERVAL * 5, 0))
+            add(Phase(2, Phase.MINUTE_INTERVAL * 30, 0))
+            add(Phase(3, Phase.HOUR_INTERVAL * 12, 0))
+            add(Phase(4, Phase.DAY_INTERVAL * 1, 0))
+            add(Phase(5, Phase.DAY_INTERVAL * 2, 0))
+            add(Phase(6, Phase.DAY_INTERVAL * 4, 0))
+            add(Phase(7, Phase.DAY_INTERVAL * 7, 0))
+            add(Phase(8, Phase.DAY_INTERVAL * 14, 0))
         }
         return strategy
     }

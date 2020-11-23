@@ -5,4 +5,5 @@
     <dimen name="fab_margin"></dimen>
     <dimen name="title">17sp</dimen>
     <dimen name="content">16sp</dimen>
+    <dimen name="tips">15sp</dimen>
 </resources>

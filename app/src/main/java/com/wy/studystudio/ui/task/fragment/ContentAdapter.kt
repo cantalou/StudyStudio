@@ -5,7 +5,6 @@ import android.view.View
 import com.wy.studystudio.R
 import com.wy.studystudio.extension.startFragment
 import com.wy.studystudio.ui.common.adapter.BaseAdapter
-import com.wy.studystudio.ui.strategy.model.Strategy
 import com.wy.studystudio.ui.task.model.Content
 
 /**
@@ -19,7 +18,7 @@ import com.wy.studystudio.ui.task.model.Content
 class ContentAdapter : BaseAdapter<Content>() {
 
     override fun layoutId(): Int {
-        return R.layout.item_content
+        return R.layout.item_content_image
     }
 
     fun edit(view: View, content: Content) {

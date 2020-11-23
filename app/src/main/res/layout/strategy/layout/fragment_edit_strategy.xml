@@ -24,21 +24,26 @@
             android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:orientation="horizontal"
+
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="名称: "></TextView>
+                android:text="策略名称: "
+                android:textColor="@color/black_333333"
+                android:textSize="@dimen/title"/>
 
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@={strategy.name}"
-                android:textSize="15dp"></EditText>
+                android:textSize="@dimen/content"></EditText>
         </LinearLayout>
 
         <TextView
@@ -62,15 +67,15 @@
 
 
         <ImageView
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="bottom|end"
             android:layout_marginRight="25dp"
             android:layout_marginBottom="35dp"
             android:onClick="@{() -> fragment.addPhase()}"
-            android:src="@drawable/add"/>
+            android:src="@drawable/add"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

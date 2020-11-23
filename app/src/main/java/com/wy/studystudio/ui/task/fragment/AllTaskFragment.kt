@@ -8,7 +8,7 @@ import com.wy.studystudio.ui.common.fragment.ListFragment
 import com.wy.studystudio.ui.task.model.Task
 import com.wy.studystudio.ui.task.vm.TaskViewModel
 
-class TaskFragment : ListFragment<FragmentTaskBinding, Task, TaskViewModel, TaskAdapter>() {
+class AllTaskFragment : ListFragment<FragmentTaskBinding, Task, TaskViewModel, TaskAdapter>() {
 
     override fun layoutId(): Int {
         return R.layout.fragment_task
@@ -25,5 +25,4 @@ class TaskFragment : ListFragment<FragmentTaskBinding, Task, TaskViewModel, Task
     fun addTask() {
         startFragment(EditTaskFragment::class.java)
     }
-
 }
