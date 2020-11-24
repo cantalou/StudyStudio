@@ -6,4 +6,5 @@
     <dimen name="title">17sp</dimen>
     <dimen name="content">16sp</dimen>
     <dimen name="tips">15sp</dimen>
+    <dimen name="corner">5dp</dimen>
 </resources>
