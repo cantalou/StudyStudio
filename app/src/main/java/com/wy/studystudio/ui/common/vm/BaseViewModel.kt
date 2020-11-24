@@ -48,30 +48,30 @@ abstract class BaseViewModel<T : BaseModel>(application: Application, val reposi
         return dataCached.find { it.id == id }!!
     }
 
-    fun add(strategy: T) {
-        dataCached.add(strategy)
+    fun add(model: T) {
+        dataCached.add(model)
         repository.saveAll(dataCached)
     }
 
-    fun addOrUpdate(strategy: T) {
-        if (dataCached.contains(strategy)) {
-            update(strategy)
+    fun addOrUpdate(model: T) {
+        if (dataCached.contains(model)) {
+            update(model)
         } else {
-            add(strategy)
+            add(model)
         }
     }
 
-    fun update(strategy: T) {
+    fun update(model: T) {
         dataCached.forEachIndexed { index, item ->
-            if (item == strategy) {
-                dataCached[index] = strategy
+            if (item == model) {
+                dataCached[index] = model
             }
         }
         repository.saveAll(dataCached)
     }
 
-    fun delete(strategy: T) {
-        dataCached.remove(strategy)
+    fun delete(model: T) {
+        dataCached.remove(model)
         repository.saveAll(dataCached)
     }
 

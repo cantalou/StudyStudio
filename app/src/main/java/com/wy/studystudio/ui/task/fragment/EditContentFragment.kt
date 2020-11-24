@@ -107,7 +107,7 @@ class EditContentFragment : BaseFragment<FragmentEditContentBinding>() {
         Matisse.from(this)
             .choose(MimeType.ofImage())
             .countable(true)
-            .maxSelectable(9)
+            .maxSelectable(20)
             .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
             .thumbnailScale(0.85f)
             .imageEngine(GlideEngine())

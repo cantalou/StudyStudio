@@ -20,19 +20,20 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:background="@drawable/bg_ripple"
-        android:onClick="@{(view) -> adapter.edit(view,item)}"
-        android:orientation="vertical">
+        android:onClick="@{(view) -> adapter.edit(view,item)}">
 
         <TextView
-            android:id="@+id/content_text"
+            android:id="@+id/content"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="80dp"
+            android:ellipsize="end"
             android:gravity="left|center_vertical"
             android:text="@{item.content}"
-            android:textColor="@color/black_333333"
-            android:textSize="@dimen/title" />
+            android:textColor="@color/black_999999"
+            android:textSize="@dimen/content" />
 
     </LinearLayout>
 </layout>

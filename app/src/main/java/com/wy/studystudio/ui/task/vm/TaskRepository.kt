@@ -35,7 +35,7 @@ class TaskRepository(private val context: Context) : BaseRepository<Task> {
                 contents.add(content)
             }
 
-            val strategy =
+            val task =
                 Task(
                     taskJ.getLong("id"),
                     taskJ.getString("name"),
@@ -45,7 +45,7 @@ class TaskRepository(private val context: Context) : BaseRepository<Task> {
                     taskJ.getLong("nextTime"),
                     contents
                 )
-            data.add(strategy)
+            data.add(task)
         }
         return data
     }
@@ -67,7 +67,7 @@ class TaskRepository(private val context: Context) : BaseRepository<Task> {
         taskJ.put("strategyId", task.strategyId)
         taskJ.put("phaseId", task.phaseId)
         taskJ.put("finishTime", task.finishTime)
-        taskJ.put("nextTime", task.finishTime)
+        taskJ.put("nextTime", task.nextTime)
 
         val contentJA = JSONArray()
         task.contents.forEachIndexed { index, content ->

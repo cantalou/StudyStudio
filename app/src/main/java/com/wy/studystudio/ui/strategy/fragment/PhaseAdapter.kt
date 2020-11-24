@@ -19,8 +19,8 @@ class PhaseAdapter : BaseAdapter<Phase>() {
 
     lateinit var cnNumber: Array<CharSequence>
 
-    override fun layoutId(): Int {
-        return R.layout.item_phase
+    override fun layoutId(): Array<Int> {
+        return arrayOf(R.layout.item_phase)
     }
 
     fun edit(phase: Phase) {

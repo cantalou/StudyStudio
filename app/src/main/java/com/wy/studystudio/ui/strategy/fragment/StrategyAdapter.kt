@@ -17,8 +17,8 @@ import com.wy.studystudio.ui.strategy.model.Strategy
  */
 class StrategyAdapter : BaseAdapter<Strategy>() {
 
-    override fun layoutId(): Int {
-        return R.layout.item_strategy
+    override fun layoutId(): Array<Int> {
+        return arrayOf(R.layout.item_strategy)
     }
 
     fun edit(view: View, strategy: Strategy) {

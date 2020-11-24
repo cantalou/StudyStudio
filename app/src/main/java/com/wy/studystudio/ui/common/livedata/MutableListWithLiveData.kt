@@ -70,7 +70,8 @@ class MutableListWithLiveData<T> : ArrayList<T> {
     }
 
     override fun set(index: Int, element: T): T {
-        return super.set(index, element)
+        val result = super.set(index, element)
         mutableLiveData?.value = this
+        return result
     }
 }

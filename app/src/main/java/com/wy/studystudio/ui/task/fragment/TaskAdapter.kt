@@ -34,8 +34,8 @@ class TaskAdapter : BaseAdapter<Task>() {
 
     private val reviewDayFormat = SimpleDateFormat("yyyy年MM月dd日")
 
-    override fun layoutId(): Int {
-        return R.layout.item_task
+    override fun layoutId(): Array<Int> {
+        return arrayOf(R.layout.item_task)
     }
 
     fun show(view: View, task: Task) {
@@ -52,7 +52,7 @@ class TaskAdapter : BaseAdapter<Task>() {
         if (reviewTime < now) {
             reviewTime = now
         }
-        return if (DateUtils.isToday(reviewTime)) reviewDayFormat.format(Date(reviewTime)) else reviewTimeFormat.format(Date(reviewTime))
+        return reviewTimeFormat.format(Date(reviewTime))
     }
 
     override fun notifyDataSetChanged(newData: List<Task>) {

@@ -21,14 +21,12 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_ripple"
-        android:onClick="@{(view) -> adapter.show(view,item)}"
         android:orientation="vertical">
 
         <ImageView
             android:id="@+id/lineBar"
             android:layout_width="match_parent"
-            android:layout_height="6dp"
+            android:layout_height="8dp"
             android:background="@color/black_EEEEEE"
             app:layout_constraintTop_toTopOf="parent"
             />
