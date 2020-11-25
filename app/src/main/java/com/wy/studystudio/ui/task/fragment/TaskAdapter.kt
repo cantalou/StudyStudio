@@ -61,7 +61,7 @@ class TaskAdapter : BaseAdapter<Task>() {
         data.sortBy { it.nextTime }
         run loop@{
             data.forEachIndexed { index, task ->
-                if (!DateUtils.isToday(task.nextTime)) {
+                if (task.nextTime > 0 && !DateUtils.isToday(task.nextTime)) {
                     data.add(index, Task(-1, "未来任务"))
                     return@loop
                 }

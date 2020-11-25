@@ -46,6 +46,7 @@ class EditTaskFragment : BaseFragment<FragmentEditTaskBinding>() {
         }
         if (task == null) {
             task = vm.createModel()
+            task!!.nextTime = System.currentTimeMillis()
         }
         task!!.contents.mutableLiveData = contentLD
         vdb.setVariable(BR.task, task)
