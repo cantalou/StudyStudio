@@ -57,16 +57,17 @@ class TaskAdapter : BaseAdapter<Task>() {
 
     override fun notifyDataSetChanged(newData: List<Task>) {
         data.clear()
-        data.add(Task(-1, "今日任务"))
-        var todayIndex = 1
-        for (task in newData) {
-            if (DateUtils.isToday(task.nextTime) || task.finishTime == 0L) {
-                data.add(todayIndex++, task)
-            } else {
-                data.add(task)
+        data.addAll(newData)
+        data.sortBy { it.nextTime }
+        run loop@{
+            data.forEachIndexed { index, task ->
+                if (!DateUtils.isToday(task.nextTime)) {
+                    data.add(index, Task(-1, "未来任务"))
+                    return@loop
+                }
             }
         }
-        data.add(todayIndex, Task(-1, "未来任务"))
+        data.add(0, Task(-1, "今日任务"))
         notifyDataSetChanged()
     }
 
