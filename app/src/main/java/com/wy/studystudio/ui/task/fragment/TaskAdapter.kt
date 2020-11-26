@@ -92,7 +92,7 @@ class TaskAdapter : BaseAdapter<Task>() {
         holder.vdb.setVariable(BR.position, position)
         if (getItemViewType(position) == 0) {
             (holder.vdb as ItemTaskTitleBinding).lineBar.visibility = if (position > 0) View.VISIBLE else View.GONE
-            (holder.vdb as ItemTaskTitleBinding).tips.visibility = if ((position + 1 == data.size || data[position + 1].id < 0)) View.VISIBLE else View.GONE
+            holder.vdb.tips.visibility = if ((position + 1 == data.size || data[position + 1].id < 0)) View.VISIBLE else View.GONE
         }
     }
 }

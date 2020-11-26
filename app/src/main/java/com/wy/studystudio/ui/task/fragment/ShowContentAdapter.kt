@@ -28,6 +28,8 @@ class ShowContentAdapter(fragment: Fragment, val task: Task) : FragmentStateAdap
         }.apply {
             arguments = Bundle().apply {
                 putParcelable("content", task.contents[position])
+                putInt("position", position)
+                putInt("total", itemCount)
             }
         }
     }
