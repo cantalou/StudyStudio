@@ -22,11 +22,10 @@ abstract class BaseAdapter<T>() : RecyclerView.Adapter<DBViewHolder>() {
 
     lateinit var context: Context
 
-    abstract fun layoutId(): Int
+    abstract fun layoutId(): Array<Int>
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DBViewHolder {
-        val vdb = DataBindingUtil.inflate<ViewDataBinding>(LayoutInflater.from(parent.context), layoutId(), parent, false)
-        return DBViewHolder(vdb)
+        return DBViewHolder(DataBindingUtil.inflate<ViewDataBinding>(LayoutInflater.from(parent.context), layoutId()[viewType], parent, false))
     }
 
     override fun getItemCount(): Int {
@@ -39,7 +38,7 @@ abstract class BaseAdapter<T>() : RecyclerView.Adapter<DBViewHolder>() {
         holder.vdb.setVariable(BR.position, position)
     }
 
-    fun notifyDataSetChanged(newData: List<T>) {
+    open fun notifyDataSetChanged(newData: List<T>) {
         data.clear()
         data.addAll(newData)
         notifyDataSetChanged()

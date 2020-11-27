@@ -1,5 +1,7 @@
 package com.wy.studystudio.ui.task.fragment
 
+import android.graphics.Color
+import android.os.Build
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
@@ -50,25 +52,13 @@ class ShowTaskFragment : BaseFragment<FragmentShowTaskBinding>() {
         val layoutParams = requireActivity().container.layoutParams as ConstraintLayout.LayoutParams
         layoutParams.topToTop = R.id.parent
         layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT
-        requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
     }
 
     override fun onDestroy() {
         if (vdb.viewPager.currentItem == task.contents.size - 1) {
-            task.finishTime = System.currentTimeMillis()
-            val phases = strategyVM.get(task.strategyId).phases
-            phases.forEachIndexed { index, phase ->
-                if (phase.id == task.phaseId) {
-                    if (index == phases.size - 1) {
-                        task.phaseId = Long.MAX_VALUE
-                    } else {
-                        task.phaseId = phases[index + 1].id
-                    }
-                    taskVM.update(task)
-                    return@forEachIndexed
-                }
-            }
+            taskVM.handleTaskFinish(task)
         }
         super.onDestroy()
     }
+
 }

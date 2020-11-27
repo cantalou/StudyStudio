@@ -34,7 +34,7 @@ class EditStrategyFragment : BaseFragment<FragmentEditStrategyBinding>() {
 
     override fun initData() {
         vm = gvm(StrategyViewModel::class.java)
-        arguments?.getLong("strategyId")?.takeIf { it > 0 }?.let {
+        arguments?.getLong("strategyId")?.let {
             strategy = vm.get(it)
         }
         if (strategy == null) {

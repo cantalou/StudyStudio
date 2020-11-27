@@ -21,7 +21,7 @@ abstract class ListFragment<V : ViewDataBinding, T : BaseModel, M : BaseViewMode
 
     lateinit var vm: M
 
-    val adapter: BaseAdapter<T> by lazy { createAdapter() }
+    lateinit var adapter: A
 
     abstract fun createAdapter(): A
 
@@ -33,11 +33,15 @@ abstract class ListFragment<V : ViewDataBinding, T : BaseModel, M : BaseViewMode
     }
 
     override fun initView(viewRoot: ViewGroup) {
-        vdb.root.findViewById<RecyclerView>(com.wy.studystudio.R.id.recycler_view).apply {
-            layoutManager = LinearLayoutManager(context)
-            adapter = adapter
-        }
-        adapter.notifyDataSetChanged(vm.getAll())
+        adapter = createAdapter()
+        val recyclerView = vdb.root.findViewById<RecyclerView>(com.wy.studystudio.R.id.recycler_view)
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.adapter = adapter
+        loadData()
+    }
+
+    open fun loadData() {
+        vm.getAll()
         vm.getAllLiveData().observeForever {
             adapter.notifyDataSetChanged(it)
         }

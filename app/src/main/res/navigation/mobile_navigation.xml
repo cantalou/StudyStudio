@@ -3,19 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_task">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.wy.studystudio.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
-
-    <fragment
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_task"
         android:name="com.wy.studystudio.ui.task.fragment.TaskFragment"
-        android:label="@string/title_dashboard"
+        android:label="@string/title_task"
         tools:layout="@layout/fragment_task" />
+
+    <fragment
+        android:id="@+id/navigation_me"
+        android:name="com.wy.studystudio.ui.home.HomeFragment"
+        android:label="@string/title_me"
+        tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_notifications"

@@ -16,7 +16,7 @@ import java.lang.reflect.ParameterizedType
  */
 abstract class BaseViewModel<T : BaseModel>(application: Application, val repository: BaseRepository<T>) : AndroidViewModel(application) {
 
-    private val modelClazz:Class<T> by lazy {
+    private val modelClazz: Class<T> by lazy {
         ((javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[0] as Class<T>)
     }
 
@@ -32,11 +32,10 @@ abstract class BaseViewModel<T : BaseModel>(application: Application, val reposi
 
     open fun getAll(): MutableList<T> {
         if (dataCached.isEmpty()) {
-            val elements = repository.getAll()
-            if(elements.isNotEmpty()){
-                dataCached.addAll(elements)
+            val allData = repository.getAll()
+            if (allData.isNotEmpty()) {
+                dataCached.addAll(allData)
             }
-            return dataCached
         }
         return dataCached
     }
@@ -49,30 +48,30 @@ abstract class BaseViewModel<T : BaseModel>(application: Application, val reposi
         return dataCached.find { it.id == id }!!
     }
 
-    fun add(strategy: T) {
-        dataCached.add(strategy)
+    fun add(model: T) {
+        dataCached.add(model)
         repository.saveAll(dataCached)
     }
 
-    fun addOrUpdate(strategy: T) {
-        if (dataCached.contains(strategy)) {
-            update(strategy)
+    fun addOrUpdate(model: T) {
+        if (dataCached.contains(model)) {
+            update(model)
         } else {
-            add(strategy)
+            add(model)
         }
     }
 
-    fun update(strategy: T) {
+    fun update(model: T) {
         dataCached.forEachIndexed { index, item ->
-            if (item == strategy) {
-                dataCached[index] = strategy
+            if (item == model) {
+                dataCached[index] = model
             }
         }
         repository.saveAll(dataCached)
     }
 
-    fun delete(strategy: T) {
-        dataCached.remove(strategy)
+    fun delete(model: T) {
+        dataCached.remove(model)
         repository.saveAll(dataCached)
     }
 

@@ -19,7 +19,7 @@ class FunctionAdapter : BaseAdapter<Function>() {
         v.context.startFragment(function.className)
     }
 
-    override fun layoutId(): Int {
-        return R.layout.item_function
+    override fun layoutId(): Array<Int> {
+        return arrayOf(R.layout.item_function)
     }
 }
