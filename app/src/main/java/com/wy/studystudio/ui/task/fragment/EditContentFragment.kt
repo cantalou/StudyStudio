@@ -111,6 +111,7 @@ class EditContentFragment : BaseFragment<FragmentEditContentBinding>() {
             .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
             .thumbnailScale(0.85f)
             .imageEngine(GlideEngine())
+            .spanCount(4)
             .forResult(DATA_REQUEST_CODE_IMAGE)
     }
 

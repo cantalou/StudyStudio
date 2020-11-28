@@ -46,7 +46,6 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment(), CoroutineScope by
         return viewRoot
     }
 
-    @CallSuper
     open fun initView(viewRoot: ViewGroup) {
 
     }
