@@ -6,7 +6,7 @@
 
         <variable
             name="fragment"
-            type="com.wy.studystudio.ui.strategy.fragment.StrategyFragment" />
+            type="com.wy.studystudio.ui.me.strategy.fragment.StrategyFragment" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:app="http://schemas.android.com/apk/res-auto"

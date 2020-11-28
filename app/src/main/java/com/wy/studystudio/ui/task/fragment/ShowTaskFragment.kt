@@ -10,7 +10,7 @@ import com.wy.studystudio.R
 import com.wy.studystudio.databinding.FragmentShowTaskBinding
 import com.wy.studystudio.extension.gvm
 import com.wy.studystudio.ui.common.fragment.BaseFragment
-import com.wy.studystudio.ui.strategy.vm.StrategyViewModel
+import com.wy.studystudio.ui.me.strategy.vm.StrategyViewModel
 import com.wy.studystudio.ui.task.model.Task
 import com.wy.studystudio.ui.task.vm.TaskViewModel
 import kotlinx.android.synthetic.main.activity_standard.*

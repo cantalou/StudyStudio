@@ -1,11 +1,11 @@
-package com.wy.studystudio.ui.strategy.fragment
+package com.wy.studystudio.ui.me.strategy.fragment
 
 import android.os.Bundle
 import android.view.View
 import com.wy.studystudio.R
 import com.wy.studystudio.extension.startFragment
 import com.wy.studystudio.ui.common.adapter.BaseAdapter
-import com.wy.studystudio.ui.strategy.model.Strategy
+import com.wy.studystudio.ui.me.strategy.model.Strategy
 
 /**
  *

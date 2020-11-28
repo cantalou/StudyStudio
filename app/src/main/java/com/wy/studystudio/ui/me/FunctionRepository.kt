@@ -1,4 +1,4 @@
-package com.wy.studystudio.ui.home
+package com.wy.studystudio.ui.me
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

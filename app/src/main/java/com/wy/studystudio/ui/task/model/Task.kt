@@ -4,7 +4,7 @@ import android.os.Parcel
 import android.os.Parcelable
 import com.wy.studystudio.ui.common.livedata.MutableListWithLiveData
 import com.wy.studystudio.ui.common.model.BaseModel
-import com.wy.studystudio.ui.strategy.model.Phase
+import com.wy.studystudio.ui.me.strategy.model.Phase
 
 /**
  *

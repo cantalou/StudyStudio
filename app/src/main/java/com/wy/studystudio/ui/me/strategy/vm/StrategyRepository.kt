@@ -1,11 +1,11 @@
-package com.wy.studystudio.ui.strategy.vm
+package com.wy.studystudio.ui.me.strategy.vm
 
 import android.content.Context
 import androidx.core.content.edit
 import com.wy.studystudio.ui.common.vm.BaseRepository
 import com.wy.studystudio.ui.common.livedata.MutableListWithLiveData
-import com.wy.studystudio.ui.strategy.model.Phase
-import com.wy.studystudio.ui.strategy.model.Strategy
+import com.wy.studystudio.ui.me.strategy.model.Phase
+import com.wy.studystudio.ui.me.strategy.model.Strategy
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -30,11 +30,15 @@ class StrategyRepository(private val context: Context) : BaseRepository<Strategy
             val phaseJA = strategyJ.getJSONArray("phases")
             for (index in 0 until phaseJA.length()) {
                 val phaseJ = phaseJA[index] as JSONObject
-                val phase = Phase(phaseJ.getLong("id"), phaseJ.getLong("interval"), phaseJ.getLong("strategyId"))
+                val phase = Phase(
+                    phaseJ.getLong("id"),
+                    phaseJ.getLong("interval"),
+                    phaseJ.getLong("strategyId")
+                )
                 phases.add(phase)
             }
 
-            val strategy = Strategy(strategyJ.getLong("id"), strategyJ.getString("name"),phases)
+            val strategy = Strategy(strategyJ.getLong("id"), strategyJ.getString("name"), phases)
             data.add(strategy)
         }
         return data

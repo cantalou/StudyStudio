@@ -2,17 +2,17 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.strategy.fragment.EditPhaseFragment">
+    tools:context=".ui.me.strategy.fragment.EditPhaseFragment">
 
     <data>
 
         <variable
             name="fragment"
-            type="com.wy.studystudio.ui.strategy.fragment.EditPhaseFragment" />
+            type="com.wy.studystudio.ui.me.strategy.fragment.EditPhaseFragment" />
 
         <variable
             name="phase"
-            type="com.wy.studystudio.ui.strategy.model.Phase" />
+            type="com.wy.studystudio.ui.me.strategy.model.Phase" />
     </data>
 
     <LinearLayout

@@ -1,4 +1,4 @@
-package com.wy.studystudio.ui.strategy.model
+package com.wy.studystudio.ui.me.strategy.model
 
 import android.os.Parcel
 import android.os.Parcelable

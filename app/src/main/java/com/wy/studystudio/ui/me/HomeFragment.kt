@@ -1,4 +1,4 @@
-package com.wy.studystudio.ui.home
+package com.wy.studystudio.ui.me
 
 import android.os.Bundle
 import android.view.LayoutInflater

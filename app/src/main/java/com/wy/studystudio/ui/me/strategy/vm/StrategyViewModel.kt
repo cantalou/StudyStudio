@@ -1,10 +1,9 @@
-package com.wy.studystudio.ui.strategy.vm
+package com.wy.studystudio.ui.me.strategy.vm
 
 import android.app.Application
-import com.wy.studystudio.ui.common.livedata.MutableListWithLiveData
 import com.wy.studystudio.ui.common.vm.BaseViewModel
-import com.wy.studystudio.ui.strategy.model.Phase
-import com.wy.studystudio.ui.strategy.model.Strategy
+import com.wy.studystudio.ui.me.strategy.model.Phase
+import com.wy.studystudio.ui.me.strategy.model.Strategy
 
 
 class StrategyViewModel(app: Application) : BaseViewModel<Strategy>(app, StrategyRepository(app)) {

@@ -6,11 +6,11 @@
 
         <variable
             name="adapter"
-            type="com.wy.studystudio.ui.strategy.fragment.PhaseAdapter" />
+            type="com.wy.studystudio.ui.me.strategy.fragment.PhaseAdapter" />
 
         <variable
             name="item"
-            type="com.wy.studystudio.ui.strategy.model.Phase" />
+            type="com.wy.studystudio.ui.me.strategy.model.Phase" />
 
         <variable
             name="position"

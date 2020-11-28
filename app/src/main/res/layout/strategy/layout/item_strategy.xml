@@ -6,11 +6,11 @@
 
         <variable
             name="adapter"
-            type="com.wy.studystudio.ui.strategy.fragment.StrategyAdapter" />
+            type="com.wy.studystudio.ui.me.strategy.fragment.StrategyAdapter" />
 
         <variable
             name="item"
-            type="com.wy.studystudio.ui.strategy.model.Strategy" />
+            type="com.wy.studystudio.ui.me.strategy.model.Strategy" />
 
         <variable
             name="position"

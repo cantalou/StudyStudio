@@ -1,4 +1,4 @@
-package com.wy.studystudio.ui.strategy.fragment
+package com.wy.studystudio.ui.me.strategy.fragment
 
 import android.os.Bundle
 import android.view.ViewGroup
@@ -11,9 +11,9 @@ import com.wy.studystudio.extension.gvm
 import com.wy.studystudio.extension.showToast
 import com.wy.studystudio.extension.startFragment
 import com.wy.studystudio.ui.common.fragment.BaseFragment
-import com.wy.studystudio.ui.strategy.model.Phase
-import com.wy.studystudio.ui.strategy.model.Strategy
-import com.wy.studystudio.ui.strategy.vm.StrategyViewModel
+import com.wy.studystudio.ui.me.strategy.model.Phase
+import com.wy.studystudio.ui.me.strategy.model.Strategy
+import com.wy.studystudio.ui.me.strategy.vm.StrategyViewModel
 import kotlinx.android.synthetic.main.activity_standard.*
 
 class EditStrategyFragment : BaseFragment<FragmentEditStrategyBinding>() {

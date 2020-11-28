@@ -4,7 +4,7 @@ import android.app.Application
 import android.text.format.DateUtils
 import com.wy.studystudio.extension.gvm
 import com.wy.studystudio.ui.common.vm.BaseViewModel
-import com.wy.studystudio.ui.strategy.vm.StrategyViewModel
+import com.wy.studystudio.ui.me.strategy.vm.StrategyViewModel
 import com.wy.studystudio.ui.task.model.Task
 
 

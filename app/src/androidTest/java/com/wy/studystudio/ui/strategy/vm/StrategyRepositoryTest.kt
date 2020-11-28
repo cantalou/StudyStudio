@@ -1,12 +1,10 @@
 package com.wy.studystudio.ui.strategy.vm
 
 import androidx.test.core.app.ApplicationProvider
-import androidx.test.espresso.internal.inject.InstrumentationContext
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.platform.app.InstrumentationRegistry
-import com.wy.studystudio.ui.common.livedata.MutableListWithLiveData
-import com.wy.studystudio.ui.strategy.model.Phase
-import com.wy.studystudio.ui.strategy.model.Strategy
+import com.wy.studystudio.ui.me.strategy.model.Phase
+import com.wy.studystudio.ui.me.strategy.model.Strategy
+import com.wy.studystudio.ui.me.strategy.vm.StrategyRepository
 import org.junit.After
 import org.junit.Test
 

@@ -11,11 +11,9 @@ import androidx.databinding.ViewDataBinding
 import com.wy.studystudio.BR
 import com.wy.studystudio.R
 import com.wy.studystudio.databinding.ItemTaskTitleBinding
-import com.wy.studystudio.extension.gvm
 import com.wy.studystudio.extension.startFragment
 import com.wy.studystudio.ui.common.adapter.BaseAdapter
 import com.wy.studystudio.ui.common.adapter.DBViewHolder
-import com.wy.studystudio.ui.strategy.vm.StrategyViewModel
 import com.wy.studystudio.ui.task.model.Task
 import java.text.SimpleDateFormat
 import java.util.*
@@ -60,8 +58,9 @@ class TaskAdapter : BaseAdapter<Task>() {
         data.addAll(newData)
         data.sortBy { it.nextTime }
         run loop@{
+            val now = System.currentTimeMillis()
             data.forEachIndexed { index, task ->
-                if (task.nextTime > 0 && !DateUtils.isToday(task.nextTime)) {
+                if (task.nextTime > now && !DateUtils.isToday(task.nextTime)) {
                     data.add(index, Task(-1, "未来任务"))
                     return@loop
                 }

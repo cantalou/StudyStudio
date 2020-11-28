@@ -6,11 +6,11 @@
 
         <variable
             name="adapter"
-            type="com.wy.studystudio.ui.home.FunctionAdapter" />
+            type="com.wy.studystudio.ui.me.FunctionAdapter" />
 
         <variable
             name="item"
-            type="com.wy.studystudio.ui.home.Function" />
+            type="com.wy.studystudio.ui.me.Function" />
     </data>
 
     <LinearLayout
