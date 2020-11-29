@@ -9,29 +9,29 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.wy.studystudio.R
-import com.wy.studystudio.databinding.FragmentHomeBinding
+import com.wy.studystudio.databinding.FragmentMeBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 
-class HomeFragment : Fragment(), CoroutineScope by MainScope() {
+class MeFragment : Fragment(), CoroutineScope by MainScope() {
 
-    private lateinit var homeViewModel: HomeViewModel
+    private lateinit var meViewModel: MeViewModel
 
     private lateinit var adapter: FunctionAdapter
 
-    private lateinit var vdb: FragmentHomeBinding
+    private lateinit var vdb: FragmentMeBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
-        vdb = DataBindingUtil.inflate<FragmentHomeBinding>(
+        meViewModel = ViewModelProvider(this).get(MeViewModel::class.java)
+        vdb = DataBindingUtil.inflate<FragmentMeBinding>(
             inflater,
-            R.layout.fragment_home,
+            R.layout.fragment_me,
             container,
             false
         )
@@ -44,7 +44,7 @@ class HomeFragment : Fragment(), CoroutineScope by MainScope() {
 
     private fun showFunction() {
         launch {
-            val data = homeViewModel.getFunctions()
+            val data = meViewModel.getFunctions()
             adapter.notifyDataSetChanged(data)
         }
     }

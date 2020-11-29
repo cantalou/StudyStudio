@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/navigation_me"
-        android:name="com.wy.studystudio.ui.me.HomeFragment"
+        android:name="com.wy.studystudio.ui.me.MeFragment"
         android:label="@string/title_me"
         tools:layout="@layout/fragment_home" />
 

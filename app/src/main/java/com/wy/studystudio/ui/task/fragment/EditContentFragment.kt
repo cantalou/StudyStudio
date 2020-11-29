@@ -7,6 +7,7 @@ import android.content.pm.ActivityInfo
 import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.FileProvider
 import com.wy.studystudio.R
@@ -68,8 +69,8 @@ class EditContentFragment : BaseFragment<FragmentEditContentBinding>() {
         }
     }
 
-    override fun initView(viewRoot: ViewGroup) {
-        super.initView(viewRoot)
+    override fun initView(viewRoot: ViewGroup, inflater: LayoutInflater) {
+        super.initView(viewRoot, inflater)
     }
 
     fun openFileChoose() {

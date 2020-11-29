@@ -1,5 +1,6 @@
 package com.wy.studystudio.ui.me.strategy.fragment
 
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.wy.studystudio.R
 import com.wy.studystudio.databinding.FragmentEditPhaseBinding
@@ -40,7 +41,7 @@ class EditPhaseFragment : BaseFragment<FragmentEditPhaseBinding>() {
         }
     }
 
-    override fun initView(viewRoot: ViewGroup) {
+    override fun initView(viewRoot: ViewGroup, inflater: LayoutInflater) {
 
         phase?.apply {
             var interval = this.interval

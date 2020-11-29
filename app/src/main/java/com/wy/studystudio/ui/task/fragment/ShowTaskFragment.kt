@@ -1,10 +1,8 @@
 package com.wy.studystudio.ui.task.fragment
 
-import android.graphics.Color
-import android.os.Build
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.wy.studystudio.R
 import com.wy.studystudio.databinding.FragmentShowTaskBinding
@@ -41,8 +39,8 @@ class ShowTaskFragment : BaseFragment<FragmentShowTaskBinding>() {
         task = requireArguments().getParcelable<Task>("task")!!
     }
 
-    override fun initView(viewRoot: ViewGroup) {
-        super.initView(viewRoot)
+    override fun initView(viewRoot: ViewGroup, inflater: LayoutInflater) {
+        super.initView(viewRoot, inflater)
         val showContentAdapter = ShowContentAdapter(this, task)
         vdb.viewPager.apply {
             offscreenPageLimit = 2

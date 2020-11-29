@@ -1,12 +1,17 @@
 package com.wy.studystudio.ui.task.fragment
 
-import android.net.Uri
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.view.ViewTreeObserver
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import com.bumptech.glide.Glide
 import com.wy.studystudio.BR
 import com.wy.studystudio.R
-import com.wy.studystudio.databinding.FragmentContentImageBinding
+import com.wy.studystudio.databinding.FragmentContentContainerBinding
+import com.wy.studystudio.extension.sp
 import com.wy.studystudio.ui.common.fragment.BaseFragment
 import com.wy.studystudio.ui.task.model.Content
 
@@ -18,7 +23,7 @@ import com.wy.studystudio.ui.task.model.Content
  *
  * Copyright (c) 2020年, WY CO.ltd. All Rights Reserved.
  */
-open class ShowContentFragment<T : ViewDataBinding> : BaseFragment<T>() {
+abstract class ShowContentFragment<T : ViewDataBinding> : BaseFragment<FragmentContentContainerBinding>() {
 
     lateinit var content: Content
 
@@ -26,9 +31,13 @@ open class ShowContentFragment<T : ViewDataBinding> : BaseFragment<T>() {
 
     var total: Int = 0
 
+    lateinit var cvdb: T
+
     override fun layoutId(): Int {
-        return R.layout.fragment_content_image
+        return R.layout.fragment_content_container
     }
+
+    abstract fun contentLayoutId(): Int
 
     override fun initData() {
         requireArguments().apply {
@@ -38,11 +47,36 @@ open class ShowContentFragment<T : ViewDataBinding> : BaseFragment<T>() {
         }
     }
 
-    override fun initView(viewRoot: ViewGroup) {
-        super.initView(viewRoot)
-        vdb.setVariable(BR.content, content)
+    override fun initView(viewRoot: ViewGroup, inflater: LayoutInflater) {
+        super.initView(viewRoot, inflater)
         vdb.setVariable(BR.position, position)
         vdb.setVariable(BR.total, total)
+        vdb.setVariable(BR.config, sp)
+        cvdb = DataBindingUtil.inflate(inflater, contentLayoutId(), vdb.contentContainer, true)
+        viewRoot.viewTreeObserver.addOnGlobalLayoutListener { updateCover(false) }
+        vdb.reciteMode.isChecked = sp.reciteModel
+        vdb.reciteMode.setOnCheckedChangeListener { _, isChecked ->
+            sp.reciteModel = isChecked
+            updateCover(true)
+        }
+    }
+
+    private fun updateCover(force: Boolean) {
+        val contentCover = vdb.contentCover
+        val containerHeight = vdb.contentContainer.measuredHeight
+        if (containerHeight > 0 && sp.reciteModel) {
+            Log.w("ContentImageFragment", "containerHeight: $containerHeight")
+            val coverHeight = (sp.coverPercent.toDouble() / 100 * containerHeight).toInt()
+            Log.w("ContentImageFragment", "coverHeight: $coverHeight")
+            if (contentCover.layoutParams.height != coverHeight || force) {
+                contentCover.layoutParams.height = coverHeight
+                (contentCover.layoutParams as ConstraintLayout.LayoutParams).topToTop = -1
+                contentCover.requestLayout()
+                contentCover.visibility = View.VISIBLE
+            }
+        } else {
+            contentCover.visibility = View.GONE
+        }
     }
 
 }

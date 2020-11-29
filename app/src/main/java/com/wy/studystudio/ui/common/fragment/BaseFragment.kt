@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.CallSuper
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
@@ -42,15 +41,15 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment(), CoroutineScope by
         vdb.setVariable(BR.fragment, this)
         viewRoot = vdb.root as ViewGroup
         initData()
-        initView(viewRoot)
+        initView(viewRoot, inflater)
         return viewRoot
     }
 
-    open fun initView(viewRoot: ViewGroup) {
+    open fun initView(viewRoot: ViewGroup, inflater: LayoutInflater) {
 
     }
 
-    open fun initData(){}
+    open fun initData() {}
 
     override fun onDestroy() {
         cancel()

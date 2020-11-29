@@ -14,7 +14,8 @@ import kotlinx.coroutines.withContext
 class FunctionRepository {
     suspend fun getFunctions(): List<Function> = withContext(Dispatchers.IO) {
         val list = mutableListOf<Function>()
-        list.add(Function("com.wy.studystudio.ui.strategy.fragment.StrategyFragment", "", "复习策略"))
+        list.add(Function("com.wy.studystudio.ui.me.strategy.fragment.StrategyFragment", "", "复习策略"))
+        list.add(Function("com.wy.studystudio.ui.me.config.fragment.ConfigFragment", "", "设置"))
         return@withContext list
     }
 }

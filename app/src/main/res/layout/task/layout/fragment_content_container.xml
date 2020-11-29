@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="position"
+            type="Integer" />
+
+        <variable
+            name="total"
+            type="Integer" />
+
+        <variable
+            name="config"
+            type="com.wy.studystudio.extension.SP" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.task.fragment.ContentImageFragment">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/bg_circle"
+            android:gravity="center"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:text='@{(position + 1) + "/" + total}'
+            android:textColor="@color/white"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Switch
+            android:id="@+id/recite_mode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="背诵模式"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <FrameLayout
+            android:id="@+id/content_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/content_cover"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/black_EEEEEE"
+            android:gravity="center"
+            android:onClick="@{(view)-> view.setVisibility(view.GONE)}"
+            android:text="点击移除"
+            android:textColor="@color/black_999999"
+            android:textSize="@dimen/title"
+            app:layout_constraintBottom_toBottomOf="@+id/content_container"
+            app:layout_constraintLeft_toLeftOf="@+id/content_container"
+            app:layout_constraintRight_toRightOf="@+id/content_container"
+            app:layout_constraintTop_toTopOf="@id/content_container" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

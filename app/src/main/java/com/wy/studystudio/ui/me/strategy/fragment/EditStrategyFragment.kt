@@ -1,6 +1,7 @@
 package com.wy.studystudio.ui.me.strategy.fragment
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -43,7 +44,7 @@ class EditStrategyFragment : BaseFragment<FragmentEditStrategyBinding>() {
         strategy!!.phases.mutableLiveData = phaseLiveData
     }
 
-    override fun initView(viewRoot: ViewGroup) {
+    override fun initView(viewRoot: ViewGroup, inflater: LayoutInflater) {
         val phaseAdapter = PhaseAdapter()
         vdb.recyclerView.apply {
             layoutManager = LinearLayoutManager(context)

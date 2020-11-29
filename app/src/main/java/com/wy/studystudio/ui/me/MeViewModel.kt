@@ -2,7 +2,7 @@ package com.wy.studystudio.ui.me
 
 import androidx.lifecycle.ViewModel
 
-class HomeViewModel : ViewModel() {
+class MeViewModel : ViewModel() {
 
     private val functionRepository = FunctionRepository()
 

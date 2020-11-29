@@ -1,5 +1,6 @@
 package com.wy.studystudio.ui.common.fragment
 
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -32,7 +33,7 @@ abstract class ListFragment<V : ViewDataBinding, T : BaseModel, M : BaseViewMode
         vm = getVM()
     }
 
-    override fun initView(viewRoot: ViewGroup) {
+    override fun initView(viewRoot: ViewGroup, inflater: LayoutInflater) {
         adapter = createAdapter()
         val recyclerView = vdb.root.findViewById<RecyclerView>(com.wy.studystudio.R.id.recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(context)

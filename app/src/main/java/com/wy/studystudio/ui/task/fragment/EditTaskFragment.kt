@@ -1,6 +1,7 @@
 package com.wy.studystudio.ui.task.fragment
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -52,8 +53,8 @@ class EditTaskFragment : BaseFragment<FragmentEditTaskBinding>() {
         vdb.setVariable(BR.task, task)
     }
 
-    override fun initView(viewRoot: ViewGroup) {
-        super.initView(viewRoot)
+    override fun initView(viewRoot: ViewGroup, inflater: LayoutInflater) {
+        super.initView(viewRoot, inflater)
         val contentAdapter = ContentAdapter()
         vdb.recyclerView.apply {
             layoutManager = LinearLayoutManager(context)

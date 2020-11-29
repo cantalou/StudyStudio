@@ -5,7 +5,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.me.HomeFragment">
+        tools:context=".ui.me.MeFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/functions"
