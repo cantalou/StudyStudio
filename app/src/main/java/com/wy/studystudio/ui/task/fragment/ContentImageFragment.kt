@@ -4,6 +4,7 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
+import com.davemorrissey.labs.subscaleview.ImageSource
 import com.wy.studystudio.R
 import com.wy.studystudio.databinding.FragmentContentImageBinding
 
@@ -23,7 +24,7 @@ class ContentImageFragment : ShowContentFragment<FragmentContentImageBinding>() 
 
     override fun initView(viewRoot: ViewGroup, inflater: LayoutInflater) {
         super.initView(viewRoot, inflater)
-        Glide.with(this).load(Uri.parse(content.content)).into(cvdb.content)
+        cvdb.content.setImage(ImageSource.uri(content.content))
     }
 
 }
