@@ -23,7 +23,7 @@ class ShowContentAdapter(fragment: Fragment, val task: Task) : FragmentStateAdap
     override fun createFragment(position: Int): Fragment {
         return when (task.contents[position].type) {
             Content.TYPE_VIDEO -> ContentVideoFragment()
-            Content.TYPE_IMAGE -> ContentImageFragment()
+            Content.TYPE_IMAGE -> ContentImageFragment(this)
             else -> ContentTextFragment()
         }.apply {
             arguments = Bundle().apply {

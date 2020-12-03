@@ -4,7 +4,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewTreeObserver
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -23,7 +22,7 @@ import com.wy.studystudio.ui.task.model.Content
  *
  * Copyright (c) 2020年, WY CO.ltd. All Rights Reserved.
  */
-abstract class ShowContentFragment<T : ViewDataBinding> : BaseFragment<FragmentContentContainerBinding>() {
+abstract class ShowContentFragment<T : ViewDataBinding>(val adapter: ShowContentAdapter) : BaseFragment<FragmentContentContainerBinding>() {
 
     lateinit var content: Content
 
@@ -54,17 +53,24 @@ abstract class ShowContentFragment<T : ViewDataBinding> : BaseFragment<FragmentC
         vdb.setVariable(BR.config, sp)
         cvdb = DataBindingUtil.inflate(inflater, contentLayoutId(), vdb.contentContainer, true)
         viewRoot.viewTreeObserver.addOnGlobalLayoutListener { updateCover(false) }
-        vdb.reciteMode.isChecked = sp.reciteModel
+        vdb.reciteMode.isChecked = sp.taskReciteMode.contains(content.taskId.toString())
         vdb.reciteMode.setOnCheckedChangeListener { _, isChecked ->
-            sp.reciteModel = isChecked
+            if (isChecked) {
+                sp.taskReciteMode.add(content.taskId.toString())
+            } else {
+                sp.taskReciteMode.remove(content.taskId.toString())
+            }
             updateCover(true)
+            //adapter.notifyDataSetChanged()
         }
     }
 
     private fun updateCover(force: Boolean) {
         val contentCover = vdb.contentCover
         val containerHeight = vdb.contentContainer.measuredHeight
-        if (containerHeight > 0 && sp.reciteModel) {
+        val isReciteMode = sp.taskReciteMode.contains(content.taskId.toString())
+        vdb.reciteMode.isChecked = isReciteMode
+        if (containerHeight > 0 && isReciteMode) {
             Log.w("ContentImageFragment", "containerHeight: $containerHeight")
             val coverHeight = (sp.coverPercent.toDouble() / 100 * containerHeight).toInt()
             Log.w("ContentImageFragment", "coverHeight: $coverHeight")

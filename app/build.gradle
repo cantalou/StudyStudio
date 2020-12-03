@@ -68,6 +68,15 @@ android {
             res.srcDirs = layoutDirs
         }
     }
+
+    android.applicationVariants.all { variant ->
+        println variant.name.toLowerCase()
+        if (variant.name.toLowerCase().contains("release")) {
+            variant.outputs.all { output ->
+                output.outputFileName = "StudyStudio_${versionName}.${versionCode}.apk"
+            }
+        }
+    }
 }
 
 kapt {

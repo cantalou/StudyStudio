@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.wy.studystudio.SSApplication
 import java.lang.IllegalStateException
-import java.util.*
+import kotlin.collections.HashSet
 import kotlin.reflect.KProperty
 
 /**
@@ -24,6 +24,7 @@ val Any.sp: SP
 class SP(val sp: SharedPreferences) {
     var reciteModel: Boolean by SPDelegate
     var coverPercent: String by SPWithValueDelegate("80")
+    var taskReciteMode: MutableSet<String> by SPDelegate
 }
 
 class SPWithValueDelegate<T>(private val defaultValue: T) {
@@ -46,7 +47,7 @@ class SPWithValueDelegate<T>(private val defaultValue: T) {
                     getLong(property.name, defaultValue)
                 }
                 is Set<*> -> {
-                    getStringSet(property.name, Collections.emptySet())
+                    getStringSet(property.name, mutableSetOf())
                 }
                 else -> IllegalStateException("Unknown property type  ${property}")
             } as T
@@ -81,28 +82,54 @@ class SPWithValueDelegate<T>(private val defaultValue: T) {
 }
 
 object SPDelegate {
+
+    private val wrapperSetMap = mutableMapOf<String, HashSet<String>>()
+
+    class WrapperSet(val name: String, val sp: SharedPreferences) : HashSet<String>() {
+        override fun add(element: String): Boolean {
+            val values = sp.getStringSet(name, mutableSetOf())
+            values!!.add(element)
+            sp.edit().putStringSet(name, values).apply()
+            return super.add(element)
+        }
+
+        override fun remove(element: String): Boolean {
+            val values = sp.getStringSet(name, mutableSetOf())
+            values!!.remove(element)
+            sp.edit().putStringSet(name, values).apply()
+            return super.remove(element)
+        }
+    }
+
     operator fun <T> getValue(sp: SP, property: KProperty<*>): T {
         sp.sp.apply {
+            val name = property.name
             return when (property.returnType.classifier) {
                 String::class -> {
-                    getString(property.name, "") as String
+                    getString(name, "") as String
                 }
                 Boolean::class -> {
-                    getBoolean(property.name, false)
+                    getBoolean(name, false)
                 }
                 Int::class -> {
-                    getInt(property.name, 0)
+                    getInt(name, 0)
                 }
                 Float::class -> {
-                    getFloat(property.name, 0.toFloat())
+                    getFloat(name, 0.toFloat())
                 }
                 Long::class -> {
-                    getLong(property.name, 0)
+                    getLong(name, 0)
                 }
                 Set::class -> {
-                    getStringSet(property.name, Collections.emptySet())
+                    var wrapperSet = wrapperSetMap.get(name)
+                    if (wrapperSet == null) {
+                        wrapperSet = WrapperSet(name, sp.sp)
+                        wrapperSetMap.put(name, wrapperSet)
+                        wrapperSet.addAll(getStringSet(name, mutableSetOf())!!)
+                    }
+                    wrapperSet
                 }
-                else -> IllegalStateException("Unknown property type  ${property}")
+                else -> IllegalStateException("Unknown property type  $property")
             } as T
         }
     }
