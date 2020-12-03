@@ -6,4 +6,6 @@
     <external-path name="external" path="." />
     <external-files-path name="name" path="." />
     <external-cache-path name="name" path="." />
+    <external-path name="beta_external_path" path="Download/"/>
+    <external-path name="beta_external_files_path" path="Android/data/"/>
 </paths>

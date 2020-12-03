@@ -14,11 +14,14 @@ android {
         minSdkVersion 21
         targetSdkVersion 26
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.${versionCode}"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         dataBinding {
             enabled true
+        }
+        ndk {
+            abiFilters 'armeabi-v7a'
         }
     }
 
@@ -73,7 +76,7 @@ android {
         println variant.name.toLowerCase()
         if (variant.name.toLowerCase().contains("release")) {
             variant.outputs.all { output ->
-                output.outputFileName = "StudyStudio_${versionName}.${versionCode}.apk"
+                output.outputFileName = "StudyStudio_${versionName}.apk"
             }
         }
     }
@@ -105,4 +108,5 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
     implementation 'com.zhihu.android:matisse:0.5.3-beta3'
     implementation 'com.davemorrissey.labs:subsampling-scale-image-view-androidx:3.10.0'
+    implementation 'com.tencent.bugly:crashreport_upgrade:latest.release'
 }
