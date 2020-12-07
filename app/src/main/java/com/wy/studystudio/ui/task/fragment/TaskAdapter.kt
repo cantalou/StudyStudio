@@ -8,15 +8,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.loader.content.AsyncTaskLoader
 import com.wy.studystudio.BR
 import com.wy.studystudio.R
 import com.wy.studystudio.databinding.ItemTaskTitleBinding
+import com.wy.studystudio.extension.gvm
 import com.wy.studystudio.extension.startFragment
 import com.wy.studystudio.ui.common.adapter.BaseAdapter
 import com.wy.studystudio.ui.common.adapter.DBViewHolder
+import com.wy.studystudio.ui.me.strategy.vm.StrategyViewModel
 import com.wy.studystudio.ui.task.model.Task
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.Comparator
 import kotlin.collections.ArrayList
 
 /**
@@ -30,7 +34,7 @@ class TaskAdapter : BaseAdapter<Task>() {
 
     private val reviewTimeFormat = SimpleDateFormat("yyyy年MM月dd日 HH:mm")
 
-    private val reviewDayFormat = SimpleDateFormat("yyyy年MM月dd日")
+    val svm = gvm(StrategyViewModel::class.java)
 
     override fun layoutId(): Array<Int> {
         return arrayOf(R.layout.item_task)
@@ -53,10 +57,15 @@ class TaskAdapter : BaseAdapter<Task>() {
         return reviewTimeFormat.format(Date(reviewTime))
     }
 
+    fun phaseInfo(task: Task): String {
+        return if (task.nextTime == Long.MAX_VALUE) "已结束" else svm.get(task.strategyId).phases.find { it.id == task.phaseId }!!.desc()
+    }
+
     override fun notifyDataSetChanged(newData: List<Task>) {
+        val now = System.currentTimeMillis()
         data.clear()
         data.addAll(newData)
-        data.sortWith(compareBy ({it.nextTime}, {it.phaseId}))
+        data.sortWith(compareBy({ if (it.nextTime < now) now else it.nextTime }, { -it.phaseId }))
         run loop@{
             val now = System.currentTimeMillis()
             data.forEachIndexed { index, task ->

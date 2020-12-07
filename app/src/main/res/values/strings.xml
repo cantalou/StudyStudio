@@ -8,6 +8,7 @@
     <string name="last_phase_title">上一个周期:%1$s</string>
     <string name="strategy_desc">复习时间点的确定, 根据艾宾浩斯记忆曲线来制定: </string>
     <string name="review_time">复习时间: %1$s</string>
+    <string name="phase_info">复习周期: %1$s</string>
     <string name="review_finish">复习完成</string>
     <string name="task_empty">任务空空的, 添加下任务吧!</string>
 
