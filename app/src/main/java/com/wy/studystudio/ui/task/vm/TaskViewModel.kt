@@ -12,16 +12,6 @@ class TaskViewModel(app: Application) : BaseViewModel<Task>(app, TaskRepository(
 
     val strategyVM  = gvm(StrategyViewModel::class.java)
 
-    fun filterTodayTask(): List<Task> {
-        val strategyVM = gvm(StrategyViewModel::class.java)
-        return getAll().filter { task ->
-            val phase = strategyVM.get(task.strategyId).phases.find { it.id == task.phaseId } ?: return@filter false
-            var reviewTime = task.finishTime + phase.interval
-            return@filter DateUtils.isToday(reviewTime)
-        }
-    }
-
-
     fun handleTaskFinish(task: Task) {
         task.finishTime = System.currentTimeMillis()
         val phases = strategyVM.get(task.strategyId).phases

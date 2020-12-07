@@ -56,7 +56,7 @@ class TaskAdapter : BaseAdapter<Task>() {
     override fun notifyDataSetChanged(newData: List<Task>) {
         data.clear()
         data.addAll(newData)
-        data.sortBy { it.nextTime }
+        data.sortWith(compareBy ({it.nextTime}, {it.phaseId}))
         run loop@{
             val now = System.currentTimeMillis()
             data.forEachIndexed { index, task ->

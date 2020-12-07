@@ -29,7 +29,6 @@ abstract class ListFragment<V : ViewDataBinding, T : BaseModel, M : BaseViewMode
     abstract fun getVM(): M
 
     override fun initData() {
-        (this.javaClass.genericSuperclass as ParameterizedType).actualTypeArguments
         vm = getVM()
     }
 
