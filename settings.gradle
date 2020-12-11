@@ -1,2 +1,3 @@
 include ':app'
+include ':image_edit'
 rootProject.name = "StudyStudio"

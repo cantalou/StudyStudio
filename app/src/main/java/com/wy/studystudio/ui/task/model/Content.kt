@@ -40,6 +40,8 @@ class Content(id: Long = 0, var type: Int = 0, val taskId: Long = 0, var content
 
         const val TYPE_VIDEO = 2
 
+        const val TYPE_LINK = 3
+
 
         override fun createFromParcel(parcel: Parcel): Content {
             return Content(parcel)

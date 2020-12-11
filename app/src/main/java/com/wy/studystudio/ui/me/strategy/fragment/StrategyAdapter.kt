@@ -2,6 +2,7 @@ package com.wy.studystudio.ui.me.strategy.fragment
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import com.wy.studystudio.R
 import com.wy.studystudio.extension.startFragment
 import com.wy.studystudio.ui.common.adapter.BaseAdapter
@@ -22,6 +23,6 @@ class StrategyAdapter : BaseAdapter<Strategy>() {
     }
 
     fun edit(view: View, strategy: Strategy) {
-        view.context.startFragment(EditStrategyFragment::class.java, 0, Bundle().apply { putLong("strategyId", strategy.id) })
+        view.context.startFragment(EditStrategyFragment::class.java, 0, bundleOf("strategyId" to strategy.id))
     }
 }

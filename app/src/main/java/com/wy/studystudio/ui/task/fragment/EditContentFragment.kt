@@ -1,6 +1,7 @@
 package com.wy.studystudio.ui.task.fragment
 
 import android.app.Activity
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION
 import android.content.pm.ActivityInfo
@@ -9,6 +10,8 @@ import android.os.Build
 import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.EditText
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.FileProvider
 import com.wy.studystudio.R
 import com.wy.studystudio.databinding.FragmentEditContentBinding
@@ -114,6 +117,17 @@ class EditContentFragment : BaseFragment<FragmentEditContentBinding>() {
             .imageEngine(GlideEngine())
             .spanCount(4)
             .forResult(DATA_REQUEST_CODE_IMAGE)
+    }
+
+    fun addLink() {
+        val requireActivity = requireActivity()
+        val editText = EditText(requireActivity)
+        AlertDialog.Builder(requireActivity).setTitle("输入链接: ").setView(editText).setPositiveButton("OK") { dialog, _ ->
+            content!!.type = Content.TYPE_LINK
+            content!!.content = editText.text.toString()
+            dialog.dismiss()
+            requireActivity.finish()
+        }.create().show()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

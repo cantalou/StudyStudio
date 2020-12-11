@@ -3,6 +3,7 @@ package com.wy.studystudio.ui.me.strategy.fragment
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.wy.studystudio.BR
@@ -76,6 +77,6 @@ class EditStrategyFragment : BaseFragment<FragmentEditStrategyBinding>() {
     }
 
     fun addPhase() {
-        startFragment(EditPhaseFragment::class.java, 0, Bundle().apply { putLong("strategyId", strategy!!.id) })
+        startFragment(EditPhaseFragment::class.java, 0, bundleOf("strategyId" to strategy!!.id))
     }
 }

@@ -6,6 +6,7 @@ import android.text.format.DateUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.loader.content.AsyncTaskLoader
@@ -41,11 +42,11 @@ class TaskAdapter : BaseAdapter<Task>() {
     }
 
     fun show(view: View, task: Task) {
-        view.context.startFragment(ShowTaskFragment::class.java, 0, Bundle().apply { putParcelable("task", task) })
+        view.context.startFragment(ShowTaskFragment::class.java, 0, bundleOf("task" to task))
     }
 
     fun edit(view: View, task: Task) {
-        view.context.startFragment(EditTaskFragment::class.java, 0, Bundle().apply { putLong("taskId", task.id) })
+        view.context.startFragment(EditTaskFragment::class.java, 0, bundleOf("taskId" to task.id))
     }
 
     fun reviewTime(task: Task): String {

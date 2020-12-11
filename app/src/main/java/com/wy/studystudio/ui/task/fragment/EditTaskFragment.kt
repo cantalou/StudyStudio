@@ -3,6 +3,7 @@ package com.wy.studystudio.ui.task.fragment
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.wy.studystudio.BR
@@ -85,7 +86,7 @@ class EditTaskFragment : BaseFragment<FragmentEditTaskBinding>() {
 
 
     fun addContent() {
-        startFragment(EditContentFragment::class.java, 0, Bundle().apply { putLong("taskId", task!!.id) })
+        startFragment(EditContentFragment::class.java, 0, bundleOf("taskId" to task!!.id))
     }
 
 }

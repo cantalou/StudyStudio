@@ -2,6 +2,7 @@ package com.wy.studystudio.ui.task.fragment
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import com.bumptech.glide.Glide
 import com.wy.studystudio.R
 import com.wy.studystudio.databinding.ItemContentImageBinding
@@ -33,7 +34,7 @@ class ContentAdapter : BaseAdapter<Content>() {
     }
 
     fun edit(view: View, content: Content) {
-        view.context.startFragment(EditContentFragment::class.java, 0, Bundle().apply { putParcelable("content", content) })
+        view.context.startFragment(EditContentFragment::class.java, 0, bundleOf("content" to content))
     }
 
     fun delete(position: Int) {

@@ -86,7 +86,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/image"
             app:layout_constraintLeft_toRightOf="@+id/video"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/link"
             app:layout_constraintTop_toTopOf="@+id/file"
             android:onClick="@{() -> fragment.openImageChoose()}"/>
 
@@ -98,6 +98,25 @@
             app:layout_constraintRight_toRightOf="@+id/image"
             app:layout_constraintTop_toBottomOf="@+id/image"
             android:onClick="@{() -> fragment.openImageChoose()}"/>
+
+        <ImageView
+            android:id="@+id/link"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/image"
+            app:layout_constraintLeft_toRightOf="@+id/image"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/file"
+            android:onClick="@{() -> fragment.addLink()}"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="链接"
+            app:layout_constraintLeft_toLeftOf="@+id/link"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/link"
+            android:onClick="@{() -> fragment.addLink()}"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

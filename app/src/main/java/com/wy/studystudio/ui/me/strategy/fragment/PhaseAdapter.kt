@@ -1,6 +1,7 @@
 package com.wy.studystudio.ui.me.strategy.fragment
 
 import android.os.Bundle
+import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.RecyclerView
 import com.wy.studystudio.R
 import com.wy.studystudio.extension.startFragment
@@ -24,9 +25,7 @@ class PhaseAdapter : BaseAdapter<Phase>() {
     }
 
     fun edit(phase: Phase) {
-        context.startFragment(EditPhaseFragment::class.java, 0, Bundle().apply {
-            putParcelable("phase", phase)
-        })
+        context.startFragment(EditPhaseFragment::class.java, 0, bundleOf("phase" to phase))
     }
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
