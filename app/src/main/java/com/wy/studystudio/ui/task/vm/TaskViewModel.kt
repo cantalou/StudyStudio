@@ -19,10 +19,12 @@ class TaskViewModel(app: Application) : BaseViewModel<Task>(app, TaskRepository(
             if (phase.id == task.phaseId) {
                 if (index == phases.size - 1) {
                     task.phaseId = Long.MAX_VALUE
+                    task.nextTime = Long.MAX_VALUE
                 } else {
                     task.phaseId = phases[index + 1].id
+                    task.nextTime = task.finishTime + phases[index + 1].interval
                 }
-                task.nextTime = task.finishTime + phases[index + 1].interval
+
                 update(task)
                 return@handleTaskFinish
             }

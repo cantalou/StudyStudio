@@ -29,7 +29,7 @@ class ContentVideoFragment(adapter: ShowContentAdapter) : ShowContentFragment<Fr
     val errorMap = mapOf<Int, String>(
         MEDIA_ERROR_IO to "MEDIA_ERROR_IO",
         MEDIA_ERROR_MALFORMED to "MEDIA_ERROR_MALFORMED",
-        MEDIA_ERROR_ to "MEDIA_ERROR_IO",
+        MEDIA_ERROR_IO to "MEDIA_ERROR_IO",
         MEDIA_ERROR_IO to "MEDIA_ERROR_IO",
         MEDIA_ERROR_IO to "MEDIA_ERROR_IO",
         MEDIA_ERROR_IO to "MEDIA_ERROR_IO",
